@@ -1,24 +1,24 @@
-import { sample } from '../images/'
+import { mmv, wip, ytv } from '../images/'
 
 const PROJECTS = [
   {
-    title: '{Project}',
-    snapshot: sample,
+    title: 'MadMovie-verse',
+    snapshot: mmv,
     techstack: ['ReactJS', 'MaterialUI', 'MongoDB'],
-    link: '#',
+    link: 'https://madmovieverse.netlify.app/',
   },
   {
-    title: 'Project',
-    snapshot: sample,
+    title: 'Youtubeverse',
+    snapshot: ytv,
     techstack: ['Solidity', 'ReactJS', 'TailwindCss', 'Thirdweb'],
-    link: '#',
+    link: 'https://youtubeverse.netlify.app/',
   },
 
   {
-    title: '[Project]',
-    snapshot: sample,
-    techstack: ['ReactJS', 'MaterialUI', 'CSS'],
-    link: '#',
+    title: 'In Progress..',
+    snapshot: wip,
+    techstack: [''],
+    link: '',
   },
 ]
 

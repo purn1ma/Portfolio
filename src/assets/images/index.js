@@ -1,5 +1,6 @@
 import logo from './P_logo.png'
-import sample from './image.png'
+import mmv from './MMV.png'
+import ytv from './YTV.png'
+import wip from './WIP.png'
 
-
-export { sample, logo }
+export { mmv, ytv, logo, wip }
