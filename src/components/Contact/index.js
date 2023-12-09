@@ -26,7 +26,7 @@ const Contact = () => {
         'solitude_of_barnacle',
         'portfolio',
         refForm.current,
-        'wHWSZM8RlMlQIg_xu'
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
       )
       .then(
         () => {

@@ -19,7 +19,6 @@ const About = () => {
       setLetterClass('text-animate-hover')
     }, 3000)
   }, [])
-
   return (
     <>
       <div className="container about-page">
@@ -39,6 +38,7 @@ const About = () => {
             always been fascinated by the world around me all my life and the
             physics behind everything blows my mind out. I am super excited to
             work on new stuff.
+           
           </p>
           <p>
             {' '}
