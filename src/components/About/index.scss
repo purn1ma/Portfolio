@@ -84,14 +84,6 @@
 
 @media screen and (max-width: 480px) {
   .stage-cube-cont {
-    order: 1;
-    height: 0;
-    margin-bottom: 24vh;
-    margin-top: 2vh;
-    transform: scale3d(0.5, 0.5, 0.5);
-  }
-
-  .text-zone {
-    order: 2;
+    display: none;
   }
 }
