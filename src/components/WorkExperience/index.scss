@@ -99,6 +99,9 @@
       margin: 0;
 
       li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
         color: var(--text-primary);
         font-size: 13px;
         font-family: 'Inter', sans-serif;
@@ -108,10 +111,17 @@
         border-bottom: 1px solid var(--border);
         animation: fadeInUp 0.5s both;
 
+        /* Hexagonal bullet — nod to the web's hex geometry */
         &::before {
-          content: '▹';
-          color: var(--accent);
-          margin-right: 10px;
+          content: '';
+          display: block;
+          width: 7px;
+          height: 8px;
+          min-width: 7px;
+          background: var(--accent);
+          clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+          margin-top: 7px;
+          flex-shrink: 0;
         }
 
         &:nth-child(1) { animation-delay: 1.3s; }

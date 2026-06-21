@@ -5,6 +5,20 @@
   margin-bottom: 20vh;
   justify-content: center;
   align-items: center;
+  position: relative;
+
+  /* Faint hex-web texture behind the cube — same pattern as the Spiderman suit */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -30px;
+    pointer-events: none;
+    opacity: 0.045;
+    background-image:
+      repeating-linear-gradient(60deg,  transparent, transparent 18px, var(--accent) 18px, var(--accent) 19px),
+      repeating-linear-gradient(120deg, transparent, transparent 18px, var(--accent) 18px, var(--accent) 19px),
+      repeating-linear-gradient(0deg,   transparent, transparent 18px, var(--accent) 18px, var(--accent) 19px);
+  }
 }
 
 .cubespinner {

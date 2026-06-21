@@ -31,7 +31,18 @@ const PSMark = () => (
       fontSize="21"
       fill="var(--accent)"
     >P</text>
+
+    {/* Divider with faint web strands — spider claimed the brand */}
     <rect x="8" y="21.5" width="28" height="1" rx="0.5" fill="var(--accent)" opacity="0.22"/>
+    {/* Web threads radiating from the divider ends */}
+    <line x1="8"  y1="21.5" x2="2"  y2="14"  stroke="var(--accent)" strokeWidth="0.5" opacity="0.18" />
+    <line x1="8"  y1="21.5" x2="0"  y2="21"  stroke="var(--accent)" strokeWidth="0.5" opacity="0.14" />
+    <line x1="36" y1="21.5" x2="42" y2="14"  stroke="var(--accent)" strokeWidth="0.5" opacity="0.18" />
+    <line x1="36" y1="21.5" x2="44" y2="21"  stroke="var(--accent)" strokeWidth="0.5" opacity="0.14" />
+    {/* Tiny connecting strand */}
+    <line x1="2"  y1="14"  x2="0"  y2="21"  stroke="var(--accent)" strokeWidth="0.5" opacity="0.10" />
+    <line x1="42" y1="14"  x2="44" y2="21"  stroke="var(--accent)" strokeWidth="0.5" opacity="0.10" />
+
     <text
       x="22" y="33"
       textAnchor="middle"

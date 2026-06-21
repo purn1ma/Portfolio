@@ -19,6 +19,24 @@
   }
 }
 
+/* Global faint corner web — subtle Spiderman motif on every page */
+.web-corner-decor {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: clamp(160px, 30vmin, 260px);
+  height: clamp(160px, 30vmin, 260px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.065;
+  transition: opacity 0.3s ease;
+}
+
+/* Slightly more visible on desktop where there's room to breathe */
+@media (min-width: 768px) {
+  .web-corner-decor { opacity: 0.09; }
+}
+
 .navbar {
   position: fixed;
   top: 0;
