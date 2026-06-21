@@ -1,11 +1,41 @@
 import { useEffect, useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
-import Loader from 'react-loaders'
 import useWindowDimensions from '../../hooks/useWindowDimension'
 import Sidebar from '../Sidebar'
 import BottomBar from '../BottomBar'
 import ThemeToggle from '../ThemeToggle'
 import './index.scss'
+
+/*
+ * Spinning hexagonal spider-web loader — replaces the old Pac-Man.
+ * 6 spokes + 3 concentric hexagonal rings, spider dot at centre.
+ * The whole SVG rotates via CSS; colours are CSS-variable-driven so
+ * both dark and light themes look correct.
+ *
+ * Ring radii: 8 / 15 / 22 units inside a 50×50 viewBox (centre 25,25)
+ * Hex vertices computed at 60° intervals: sin/cos of 0,60,120,180,240,300°
+ */
+const SpideyLoader = ({ active }) => (
+  <div className={`spidey-loader ${active ? 'loader-active' : 'loader-hidden'}`}>
+    <svg viewBox="0 0 50 50" width="52" height="52" aria-hidden="true">
+      {/* Spokes */}
+      <line x1="25" y1="25" x2="25" y2="3"  className="sl-spoke" />
+      <line x1="25" y1="25" x2="44" y2="14" className="sl-spoke" />
+      <line x1="25" y1="25" x2="44" y2="36" className="sl-spoke" />
+      <line x1="25" y1="25" x2="25" y2="47" className="sl-spoke" />
+      <line x1="25" y1="25" x2="6"  y2="36" className="sl-spoke" />
+      <line x1="25" y1="25" x2="6"  y2="14" className="sl-spoke" />
+      {/* Ring 1  r = 8 */}
+      <polygon points="25,17 32,21 32,29 25,33 18,29 18,21"               className="sl-ring" />
+      {/* Ring 2  r = 15 */}
+      <polygon points="25,10 38,17.5 38,32.5 25,40 12,32.5 12,17.5"       className="sl-ring" />
+      {/* Ring 3  r = 22 */}
+      <polygon points="25,3 44,14 44,36 25,47 6,36 6,14"                   className="sl-ring" />
+      {/* Spider at centre */}
+      <circle cx="25" cy="25" r="3.5" className="sl-spider" />
+    </svg>
+  </div>
+)
 
 const Layout = () => {
   const { width } = useWindowDimensions()
@@ -48,7 +78,7 @@ const Layout = () => {
           <span className="bottom-thanks"> Thanks for visiting my page!</span>
         </span>
       </div>
-      <Loader type="pacman" active={isLoading} />
+      <SpideyLoader active={isLoading} />
     </div>
   )
 }

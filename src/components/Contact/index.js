@@ -3,7 +3,7 @@ import emailjs from '@emailjs/browser'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
-import { Backdrop, CircularProgress } from '@mui/material'
+import { Backdrop } from '@mui/material'
 import AnimatedLetters from '../AnimatedLetters'
 import './index.scss'
 
@@ -204,8 +204,19 @@ const Contact = () => {
         </div>
       </div>
 
-      <Backdrop sx={{ color: 'var(--accent)', zIndex: 1400 }} open={loading}>
-        <CircularProgress color="inherit" />
+      <Backdrop sx={{ background: 'rgba(6,5,4,0.72)', backdropFilter: 'blur(6px)', zIndex: 1400 }} open={loading}>
+        <svg viewBox="0 0 50 50" width="60" height="60" style={{ animation: 'slSpin 1.3s linear infinite', transformOrigin: 'center', filter: 'drop-shadow(0 0 10px rgba(220,38,38,0.6))' }}>
+          <line x1="25" y1="25" x2="25" y2="3"  stroke="var(--accent)" strokeWidth="1.1" strokeLinecap="round" />
+          <line x1="25" y1="25" x2="44" y2="14" stroke="var(--accent)" strokeWidth="1.1" strokeLinecap="round" />
+          <line x1="25" y1="25" x2="44" y2="36" stroke="var(--accent)" strokeWidth="1.1" strokeLinecap="round" />
+          <line x1="25" y1="25" x2="25" y2="47" stroke="var(--accent)" strokeWidth="1.1" strokeLinecap="round" />
+          <line x1="25" y1="25" x2="6"  y2="36" stroke="var(--accent)" strokeWidth="1.1" strokeLinecap="round" />
+          <line x1="25" y1="25" x2="6"  y2="14" stroke="var(--accent)" strokeWidth="1.1" strokeLinecap="round" />
+          <polygon points="25,17 32,21 32,29 25,33 18,29 18,21"         fill="none" stroke="var(--accent)" strokeWidth="0.85" strokeLinejoin="round" />
+          <polygon points="25,10 38,17.5 38,32.5 25,40 12,32.5 12,17.5" fill="none" stroke="var(--accent)" strokeWidth="0.85" strokeLinejoin="round" />
+          <polygon points="25,3 44,14 44,36 25,47 6,36 6,14"             fill="none" stroke="var(--accent)" strokeWidth="0.85" strokeLinejoin="round" />
+          <circle cx="25" cy="25" r="3.5" fill="#dc2626" />
+        </svg>
       </Backdrop>
 
       {sent && <SuccessScreen onClose={() => setSent(false)} />}

@@ -1,5 +1,4 @@
 @import 'animate.css';
-@import '~loaders.css/src/animations/pacman.scss';
 
 @font-face {
   font-family: 'La Belle Aurore';
@@ -22,8 +21,8 @@ textarea {
   font-family: 'Inter', sans-serif;
 }
 
+/* Page-transition loader — shared show/hide transitions */
 .loader-hidden {
-  /* override loaders.css display:none so we can transition */
   display: block !important;
   opacity: 0;
   pointer-events: none;
@@ -41,24 +40,40 @@ textarea {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%) scale(1);
-  width: 50px;
-  height: 50px;
   z-index: 999;
   opacity: 1;
   transition: opacity 0.15s ease-in, transform 0.15s ease-out;
 }
 
-/* loaders.css pacman uses hardcoded white — override for light mode */
-[data-theme="light"] {
-  .pacman > div:nth-child(1),
-  .pacman > div:nth-child(2) {
-    border-top-color: var(--purple) !important;
-    border-left-color: var(--purple) !important;
-    border-bottom-color: var(--purple) !important;
+/* Spider-web spinner ───────────────────────────── */
+.spidey-loader {
+  svg {
+    display: block;
+    animation: slSpin 1.3s linear infinite;
+    transform-origin: center;
+    /* Red glow from the spider dot at centre */
+    filter: drop-shadow(0 0 7px rgba(220, 38, 38, 0.55));
   }
-  .pacman > div:nth-child(3),
-  .pacman > div:nth-child(4),
-  .pacman > div:nth-child(5) {
-    background-color: var(--purple) !important;
+
+  .sl-spoke {
+    stroke: var(--accent);
+    stroke-width: 1.1;
+    stroke-linecap: round;
   }
+
+  .sl-ring {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 0.85;
+    stroke-linejoin: round;
+  }
+
+  .sl-spider {
+    fill: #dc2626;
+  }
+}
+
+@keyframes slSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
