@@ -7,63 +7,76 @@ import { Backdrop, CircularProgress } from '@mui/material'
 import AnimatedLetters from '../AnimatedLetters'
 import './index.scss'
 
+/* Spider chest-emblem SVG — no eyes, tapered abdomen, segmented legs */
 const SpiderSVG = () => (
-  <svg viewBox="0 0 100 88" className="spider-svg" aria-hidden="true">
+  <svg viewBox="-5 0 110 90" className="spider-svg" aria-hidden="true">
     {/* Head */}
-    <ellipse cx="50" cy="22" rx="13" ry="10" className="s-body" />
+    <ellipse cx="50" cy="13" rx="11" ry="9" className="s-body" />
+    {/* Abdomen — tapered teardrop shape like the suit logo */}
+    <path
+      d="M 34 21 C 32 36, 38 64, 50 75 C 62 64, 68 36, 66 21 C 60 18, 40 18, 34 21 Z"
+      className="s-body"
+    />
+    {/* Suit web lines on abdomen — subtle texture */}
+    <path d="M 42 28 L 58 28" className="s-detail" />
+    <path d="M 40 38 L 60 38" className="s-detail" />
+    <path d="M 41 49 L 59 49" className="s-detail" />
+    <path d="M 44 59 L 56 59" className="s-detail" />
+    {/* Left legs — two segments each */}
+    <path d="M 36 26 L 16 17 L 1 23"   className="s-leg" />
+    <path d="M 35 37 L 13 35 L -2 41"  className="s-leg" />
+    <path d="M 35 50 L 13 53 L -1 61"  className="s-leg" />
+    <path d="M 36 62 L 19 73 L 5 81"   className="s-leg" />
+    {/* Right legs — mirror */}
+    <path d="M 64 26 L 84 17 L 99 23"  className="s-leg" />
+    <path d="M 65 37 L 87 35 L 102 41" className="s-leg" />
+    <path d="M 65 50 L 87 53 L 101 61" className="s-leg" />
+    <path d="M 64 62 L 81 73 L 95 81"  className="s-leg" />
+  </svg>
+)
 
-    {/* Eyes — Spiderman pointed-inward style */}
-    <path d="M 36 19 L 43 17 L 48 21 L 48 27 L 43 30 L 36 27 Z" className="s-eye" />
-    <path d="M 52 21 L 57 17 L 64 19 L 64 27 L 57 30 L 52 27 Z" className="s-eye" />
-
-    {/* Abdomen */}
-    <ellipse cx="50" cy="51" rx="15" ry="19" className="s-body" />
-
-    {/* Left legs */}
-    <path d="M 37 28 Q 22 22, 7 20"  className="s-leg" />
-    <path d="M 36 38 Q 18 38, 3 40"  className="s-leg" />
-    <path d="M 36 52 Q 18 56, 3 62"  className="s-leg" />
-    <path d="M 37 64 Q 22 72, 8 80"  className="s-leg" />
-
-    {/* Right legs */}
-    <path d="M 63 28 Q 78 22, 93 20" className="s-leg" />
-    <path d="M 64 38 Q 82 38, 97 40" className="s-leg" />
-    <path d="M 64 52 Q 82 56, 97 62" className="s-leg" />
-    <path d="M 63 64 Q 78 72, 92 80" className="s-leg" />
+/* Reusable corner web SVG — same geometry rotated per corner */
+const CornerWeb = ({ className }) => (
+  <svg className={`corner-web ${className}`} viewBox="0 0 110 110" preserveAspectRatio="xMaxYMin meet">
+    <line className="w-spoke" x1="110" y1="0" x2="0"   y2="0"   style={{ animationDelay: '0.00s' }} />
+    <line className="w-spoke" x1="110" y1="0" x2="0"   y2="28"  style={{ animationDelay: '0.07s' }} />
+    <line className="w-spoke" x1="110" y1="0" x2="0"   y2="60"  style={{ animationDelay: '0.14s' }} />
+    <line className="w-spoke" x1="110" y1="0" x2="22"  y2="110" style={{ animationDelay: '0.21s' }} />
+    <line className="w-spoke" x1="110" y1="0" x2="60"  y2="110" style={{ animationDelay: '0.28s' }} />
+    <line className="w-spoke" x1="110" y1="0" x2="110" y2="110" style={{ animationDelay: '0.35s' }} />
+    <polyline className="w-ring" points="84,0 85,7 87,13 91,17 96,20 110,21"   style={{ animationDelay: '0.50s' }} />
+    <polyline className="w-ring" points="58,0 60,14 64,27 71,36 83,42 110,44"  style={{ animationDelay: '0.68s' }} />
+    <polyline className="w-ring" points="32,0 35,21 41,40 52,55 69,64 110,67"  style={{ animationDelay: '0.86s' }} />
+    <polyline className="w-ring" points="6,0  10,28 18,54 32,72 55,85 110,88"  style={{ animationDelay: '1.04s' }} />
   </svg>
 )
 
 const SuccessScreen = ({ onClose }) => {
   useEffect(() => {
-    const t = setTimeout(onClose, 5000)
+    const t = setTimeout(onClose, 5500)
     return () => clearTimeout(t)
   }, [onClose])
 
   return (
     <div className="spidey-overlay" onClick={onClose}>
 
-      {/* Corner web — top-right */}
-      <svg className="corner-web" viewBox="0 0 110 110" preserveAspectRatio="xMaxYMin meet">
-        <line className="w-spoke" x1="110" y1="0" x2="0"   y2="0"   style={{ animationDelay: '0.00s' }} />
-        <line className="w-spoke" x1="110" y1="0" x2="0"   y2="28"  style={{ animationDelay: '0.07s' }} />
-        <line className="w-spoke" x1="110" y1="0" x2="0"   y2="60"  style={{ animationDelay: '0.14s' }} />
-        <line className="w-spoke" x1="110" y1="0" x2="22"  y2="110" style={{ animationDelay: '0.21s' }} />
-        <line className="w-spoke" x1="110" y1="0" x2="60"  y2="110" style={{ animationDelay: '0.28s' }} />
-        <line className="w-spoke" x1="110" y1="0" x2="110" y2="110" style={{ animationDelay: '0.35s' }} />
-        <polyline className="w-ring" points="84,0 85,7 87,13 91,17 96,20 110,21"    style={{ animationDelay: '0.50s' }} />
-        <polyline className="w-ring" points="58,0 60,14 64,27 71,36 83,42 110,44"  style={{ animationDelay: '0.68s' }} />
-        <polyline className="w-ring" points="32,0 35,21 41,40 52,55 69,64 110,67"  style={{ animationDelay: '0.86s' }} />
-        <polyline className="w-ring" points="6,0  10,28 18,54 32,72 55,85 110,88"  style={{ animationDelay: '1.04s' }} />
-      </svg>
+      {/* Suit hex-web texture layer */}
+      <div className="spidey-hex-bg" aria-hidden="true" />
 
-      {/* Spider drops on web thread */}
+      {/* Corner webs — top-right and bottom-left */}
+      <CornerWeb className="corner-web--tr" />
+      <CornerWeb className="corner-web--bl" />
+
+      {/* Spider swings in on web thread */}
       <div className="spider-drop">
         <div className="web-thread" />
         <SpiderSVG />
       </div>
 
-      {/* THWIP! */}
-      <div className="thwip-bubble">THWIP!</div>
+      {/* THWIP with starburst explosion behind it */}
+      <div className="thwip-wrapper">
+        <span className="thwip-bubble">THWIP!</span>
+      </div>
 
       {/* Message */}
       <div className="spidey-content">
