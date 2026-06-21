@@ -2,6 +2,7 @@ import * as React from 'react'
 import { BottomNavigation, BottomNavigationAction } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import {
+  BusinessCenterRounded,
   FolderRounded,
   HomeRounded,
   MailRounded,
@@ -21,8 +22,8 @@ export default function BottomBar() {
   }
 
   const NAV_STYLES = {
-    color: '#967bb6',
-    borderLeft: '1px solid #967bb624',
+    color: 'var(--purple)',
+    borderLeft: '1px solid var(--border)',
   }
 
   const NAV_BUTTONS = [
@@ -36,6 +37,12 @@ export default function BottomBar() {
       label: 'About',
       value: 'about',
       icon: <Person4Rounded />,
+      style: NAV_STYLES,
+    },
+    {
+      label: 'Experience',
+      value: 'experience',
+      icon: <BusinessCenterRounded />,
       style: NAV_STYLES,
     },
     {
@@ -55,8 +62,8 @@ export default function BottomBar() {
     <BottomNavigation
       sx={{
         width: width,
-        background: 'black',
-        boxShadow: '-1px -1px 1px 1px #967bb644;',
+        background: 'var(--bg-surface)',
+        boxShadow: '0 -1px 4px var(--purple-border)',
       }}
       value={value}
       onChange={handleChange}
