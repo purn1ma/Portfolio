@@ -95,23 +95,18 @@
 }
 
 .spider-svg {
-  width: 116px;
-  height: 100px;
+  /* viewBox is 200×155 — keep aspect ratio, scale down on mobile */
+  width: clamp(140px, 44vw, 172px);
+  height: auto;
   /* Red glow — the chest emblem pulses */
   filter: drop-shadow(0 0 18px rgba(220, 38, 38, 0.70))
           drop-shadow(0 0 40px rgba(220, 38, 38, 0.30));
   animation: soSpiderBob 1.9s ease-in-out 1.35s infinite;
 
-  .s-body   { fill: var(--so-red); }
-  .s-detail {
-    stroke: rgba(0, 0, 0, 0.22);
-    stroke-width: 0.9;
-    fill: none;
-    stroke-linecap: round;
-  }
-  .s-leg {
+  .s-body { fill: var(--so-red); }
+  .s-leg  {
     stroke: var(--so-red);
-    stroke-width: 3.4;
+    stroke-width: 4;
     fill: none;
     stroke-linecap: round;
     stroke-linejoin: round;

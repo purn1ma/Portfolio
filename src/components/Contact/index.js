@@ -7,31 +7,40 @@ import { Backdrop, CircularProgress } from '@mui/material'
 import AnimatedLetters from '../AnimatedLetters'
 import './index.scss'
 
-/* Spider chest-emblem SVG — no eyes, tapered abdomen, segmented legs */
+/*
+ * Spider SVG modelled on the original Spiderman chest emblem:
+ *   – Small oval head (cephalothorax)
+ *   – Thin waist oval
+ *   – Rounded abdomen below
+ *   – 4 legs per side, each a two-segment polyline with ONE sharp bend
+ *   – Top 2 pairs sweep UP from the body then angle back out/down
+ *   – Bottom 2 pairs sweep DOWN then angle out further
+ *   – Very wide horizontal spread (fills a 200-unit viewBox)
+ */
 const SpiderSVG = () => (
-  <svg viewBox="-5 0 110 90" className="spider-svg" aria-hidden="true">
+  <svg viewBox="0 0 200 155" className="spider-svg" aria-hidden="true">
     {/* Head */}
-    <ellipse cx="50" cy="13" rx="11" ry="9" className="s-body" />
-    {/* Abdomen — tapered teardrop shape like the suit logo */}
-    <path
-      d="M 34 21 C 32 36, 38 64, 50 75 C 62 64, 68 36, 66 21 C 60 18, 40 18, 34 21 Z"
-      className="s-body"
-    />
-    {/* Suit web lines on abdomen — subtle texture */}
-    <path d="M 42 28 L 58 28" className="s-detail" />
-    <path d="M 40 38 L 60 38" className="s-detail" />
-    <path d="M 41 49 L 59 49" className="s-detail" />
-    <path d="M 44 59 L 56 59" className="s-detail" />
-    {/* Left legs — two segments each */}
-    <path d="M 36 26 L 16 17 L 1 23"   className="s-leg" />
-    <path d="M 35 37 L 13 35 L -2 41"  className="s-leg" />
-    <path d="M 35 50 L 13 53 L -1 61"  className="s-leg" />
-    <path d="M 36 62 L 19 73 L 5 81"   className="s-leg" />
-    {/* Right legs — mirror */}
-    <path d="M 64 26 L 84 17 L 99 23"  className="s-leg" />
-    <path d="M 65 37 L 87 35 L 102 41" className="s-leg" />
-    <path d="M 65 50 L 87 53 L 101 61" className="s-leg" />
-    <path d="M 64 62 L 81 73 L 95 81"  className="s-leg" />
+    <ellipse cx="100" cy="21" rx="12" ry="10" className="s-body" />
+    {/* Waist — thin connector between head and abdomen */}
+    <ellipse cx="100" cy="35" rx="6"  ry="5"  className="s-body" />
+    {/* Abdomen */}
+    <ellipse cx="100" cy="65" rx="18" ry="24" className="s-body" />
+
+    {/* ── Left legs: attach → knee → tip ── */}
+    {/* Leg 1: shoots UP-LEFT, knee high above body, tip angles back down */}
+    <polyline points="90,42  46,5   12,28"  className="s-leg" />
+    {/* Leg 2: goes left with slight upward, knee at mid-height, tip left-down */}
+    <polyline points="86,54  32,44  3,70"   className="s-leg" />
+    {/* Leg 3: goes left-down, knee at body level, tip continues down */}
+    <polyline points="86,68  30,80  3,108"  className="s-leg" />
+    {/* Leg 4: shoots DOWN-LEFT, knee below body, tip angles out-down */}
+    <polyline points="89,80  46,110 14,144" className="s-leg" />
+
+    {/* ── Right legs: exact mirror (x → 200 − x) ── */}
+    <polyline points="110,42 154,5   188,28"  className="s-leg" />
+    <polyline points="114,54 168,44  197,70"  className="s-leg" />
+    <polyline points="114,68 170,80  197,108" className="s-leg" />
+    <polyline points="111,80 154,110 186,144" className="s-leg" />
   </svg>
 )
 
@@ -53,7 +62,7 @@ const CornerWeb = ({ className }) => (
 
 const SuccessScreen = ({ onClose }) => {
   useEffect(() => {
-    const t = setTimeout(onClose, 5500)
+    const t = setTimeout(onClose, 8000)
     return () => clearTimeout(t)
   }, [onClose])
 
