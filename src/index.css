@@ -1,17 +1,66 @@
-*{
-  user-select: none;
+:root {
+  /* dark – warm charcoal */
+  --bg:              #0f0e0c;
+  --bg-surface:      #181714;
+  --bg-card:         #201e1b;
+  --text-primary:    #ede8de;
+  --text-secondary:  #8c877e;
+  --text-muted:      #504c47;
+  --accent:          #f0a030;
+  --accent-hover:    #fabb44;
+  --purple:          #7a9e8a;
+  --purple-subtle:   rgba(122, 158, 138, 0.10);
+  --purple-border:   rgba(122, 158, 138, 0.22);
+  --nav-icon:        #504c47;
+  --border:          rgba(237, 232, 222, 0.10);
+  --glow:            rgba(240, 160, 48, 0.10);
 }
+
+[data-theme="light"] {
+  /* light – warm ivory */
+  --bg:              #f8f5f0;
+  --bg-surface:      #edeae3;
+  --bg-card:         #ffffff;
+  --text-primary:    #1c1916;
+  --text-secondary:  #5a5550;
+  --text-muted:      #9a958e;
+  --accent:          #c07820;
+  --accent-hover:    #f0a030;
+  --purple:          #4d7a68;
+  --purple-subtle:   rgba(77, 122, 104, 0.09);
+  --purple-border:   rgba(77, 122, 104, 0.22);
+  --nav-icon:        #9a958e;
+  --border:          rgba(28, 25, 22, 0.11);
+  --glow:            rgba(192, 120, 32, 0.06);
+}
+
+/* radial reveal transition */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) { z-index: 1; }
+::view-transition-old(root) { z-index: -1; }
+
+* {
+  user-select: none;
+  box-sizing: border-box;
+}
+
 html {
-    font-size: 62.5%;
-  }
-  
-  body {
-    margin: 0;
-    font: 300 11px/1.4 'Helvetica Neue', sans-serif;
-    color: #444;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background: #000;
-    display: block;
-  }
-  
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--text-primary);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.3s ease, color 0.3s ease;
+}
