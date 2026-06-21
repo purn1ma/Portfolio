@@ -204,19 +204,28 @@ const Contact = () => {
         </div>
       </div>
 
-      <Backdrop sx={{ background: 'rgba(6,5,4,0.72)', backdropFilter: 'blur(6px)', zIndex: 1400 }} open={loading}>
-        <svg viewBox="0 0 50 50" width="60" height="60" style={{ animation: 'slSpin 1.3s linear infinite', transformOrigin: 'center', filter: 'drop-shadow(0 0 10px rgba(220,38,38,0.6))' }}>
-          <line x1="25" y1="25" x2="25" y2="3"  stroke="var(--accent)" strokeWidth="1.1" strokeLinecap="round" />
-          <line x1="25" y1="25" x2="44" y2="14" stroke="var(--accent)" strokeWidth="1.1" strokeLinecap="round" />
-          <line x1="25" y1="25" x2="44" y2="36" stroke="var(--accent)" strokeWidth="1.1" strokeLinecap="round" />
-          <line x1="25" y1="25" x2="25" y2="47" stroke="var(--accent)" strokeWidth="1.1" strokeLinecap="round" />
-          <line x1="25" y1="25" x2="6"  y2="36" stroke="var(--accent)" strokeWidth="1.1" strokeLinecap="round" />
-          <line x1="25" y1="25" x2="6"  y2="14" stroke="var(--accent)" strokeWidth="1.1" strokeLinecap="round" />
-          <polygon points="25,17 32,21 32,29 25,33 18,29 18,21"         fill="none" stroke="var(--accent)" strokeWidth="0.85" strokeLinejoin="round" />
-          <polygon points="25,10 38,17.5 38,32.5 25,40 12,32.5 12,17.5" fill="none" stroke="var(--accent)" strokeWidth="0.85" strokeLinejoin="round" />
-          <polygon points="25,3 44,14 44,36 25,47 6,36 6,14"             fill="none" stroke="var(--accent)" strokeWidth="0.85" strokeLinejoin="round" />
-          <circle cx="25" cy="25" r="3.5" fill="#dc2626" />
-        </svg>
+      <Backdrop sx={{ background: 'rgba(6,5,4,0.78)', backdropFilter: 'blur(8px)', zIndex: 1400 }} open={loading}>
+        <div className="spidey-loader loader-active" style={{ position: 'static', transform: 'none', opacity: 1, transition: 'none' }}>
+          <svg viewBox="0 0 60 60" width="64" height="64" aria-hidden="true">
+            <g style={{ transformBox: 'fill-box', transformOrigin: 'center', animation: 'slSpinCW 2.5s linear infinite' }}>
+              <line x1="30" y1="30" x2="30" y2="4"  stroke="var(--accent)" strokeWidth="1"   strokeLinecap="round" opacity="0.65" />
+              <line x1="30" y1="30" x2="53" y2="17" stroke="var(--accent)" strokeWidth="1"   strokeLinecap="round" opacity="0.65" />
+              <line x1="30" y1="30" x2="53" y2="43" stroke="var(--accent)" strokeWidth="1"   strokeLinecap="round" opacity="0.65" />
+              <line x1="30" y1="30" x2="30" y2="56" stroke="var(--accent)" strokeWidth="1"   strokeLinecap="round" opacity="0.65" />
+              <line x1="30" y1="30" x2="7"  y2="43" stroke="var(--accent)" strokeWidth="1"   strokeLinecap="round" opacity="0.65" />
+              <line x1="30" y1="30" x2="7"  y2="17" stroke="var(--accent)" strokeWidth="1"   strokeLinecap="round" opacity="0.65" />
+              <polygon points="30,6 51,18 51,42 30,54 9,42 9,18" fill="none" stroke="var(--accent)" strokeWidth="0.8"  strokeLinejoin="round" opacity="0.55" />
+            </g>
+            <g style={{ transformBox: 'fill-box', transformOrigin: 'center', animation: 'slSpinCCW 1.8s linear infinite' }}>
+              <polygon points="30,15 43,22.5 43,37.5 30,45 17,37.5 17,22.5" fill="none" stroke="var(--accent)" strokeWidth="0.95" strokeLinejoin="round" opacity="0.75" />
+              <polygon points="30,22 37,26 37,34 30,38 23,34 23,26"          fill="none" stroke="var(--accent)" strokeWidth="1.1"  strokeLinejoin="round" />
+            </g>
+            <circle cx="30" cy="30" r="28" fill="none" stroke="#dc2626" strokeWidth="1.5"
+              style={{ transformBox: 'fill-box', transformOrigin: 'center', animation: 'slPulseOut 1.4s ease-out infinite' }} />
+            <circle cx="30" cy="30" r="4.5" fill="#dc2626"
+              style={{ transformBox: 'fill-box', transformOrigin: 'center', animation: 'slSpiderPulse 0.7s ease-in-out infinite alternate' }} />
+          </svg>
+        </div>
       </Backdrop>
 
       {sent && <SuccessScreen onClose={() => setSent(false)} />}

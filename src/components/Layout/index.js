@@ -7,32 +7,45 @@ import ThemeToggle from '../ThemeToggle'
 import './index.scss'
 
 /*
- * Spinning hexagonal spider-web loader — replaces the old Pac-Man.
- * 6 spokes + 3 concentric hexagonal rings, spider dot at centre.
- * The whole SVG rotates via CSS; colours are CSS-variable-driven so
- * both dark and light themes look correct.
+ * Two-layer counter-rotating web + expanding pulse ring:
+ *   – Outer layer (spokes + outer hex ring): spins clockwise at 2.5 s/rev
+ *   – Inner layer (two smaller hex rings): spins counter-clockwise at 1.8 s/rev
+ *   – Red pulse ring: expands from centre outward and fades (web-shot energy)
+ *   – Red spider dot at centre: throbs between 0.7× and 1.3×
  *
- * Ring radii: 8 / 15 / 22 units inside a 50×50 viewBox (centre 25,25)
- * Hex vertices computed at 60° intervals: sin/cos of 0,60,120,180,240,300°
+ * ViewBox 60×60, centre (30,30).
+ * Hex ring radii: 8 (inner), 15 (mid), 24 (outer) — vertices at 60° intervals.
+ * Spokes extend to r = 26 (past the outer ring to the edge).
  */
 const SpideyLoader = ({ active }) => (
   <div className={`spidey-loader ${active ? 'loader-active' : 'loader-hidden'}`}>
-    <svg viewBox="0 0 50 50" width="52" height="52" aria-hidden="true">
-      {/* Spokes */}
-      <line x1="25" y1="25" x2="25" y2="3"  className="sl-spoke" />
-      <line x1="25" y1="25" x2="44" y2="14" className="sl-spoke" />
-      <line x1="25" y1="25" x2="44" y2="36" className="sl-spoke" />
-      <line x1="25" y1="25" x2="25" y2="47" className="sl-spoke" />
-      <line x1="25" y1="25" x2="6"  y2="36" className="sl-spoke" />
-      <line x1="25" y1="25" x2="6"  y2="14" className="sl-spoke" />
-      {/* Ring 1  r = 8 */}
-      <polygon points="25,17 32,21 32,29 25,33 18,29 18,21"               className="sl-ring" />
-      {/* Ring 2  r = 15 */}
-      <polygon points="25,10 38,17.5 38,32.5 25,40 12,32.5 12,17.5"       className="sl-ring" />
-      {/* Ring 3  r = 22 */}
-      <polygon points="25,3 44,14 44,36 25,47 6,36 6,14"                   className="sl-ring" />
-      {/* Spider at centre */}
-      <circle cx="25" cy="25" r="3.5" className="sl-spider" />
+    <svg viewBox="0 0 60 60" width="60" height="60" aria-hidden="true">
+
+      {/* Outer layer — clockwise */}
+      <g className="sl-outer">
+        <line x1="30" y1="30" x2="30" y2="4"  className="sl-spoke" />
+        <line x1="30" y1="30" x2="53" y2="17" className="sl-spoke" />
+        <line x1="30" y1="30" x2="53" y2="43" className="sl-spoke" />
+        <line x1="30" y1="30" x2="30" y2="56" className="sl-spoke" />
+        <line x1="30" y1="30" x2="7"  y2="43" className="sl-spoke" />
+        <line x1="30" y1="30" x2="7"  y2="17" className="sl-spoke" />
+        {/* Outer ring  r = 24 */}
+        <polygon points="30,6 51,18 51,42 30,54 9,42 9,18" className="sl-ring-outer" />
+      </g>
+
+      {/* Inner layer — counter-clockwise */}
+      <g className="sl-inner">
+        {/* Mid ring  r = 15 */}
+        <polygon points="30,15 43,22.5 43,37.5 30,45 17,37.5 17,22.5" className="sl-ring-mid" />
+        {/* Inner ring  r = 8 */}
+        <polygon points="30,22 37,26 37,34 30,38 23,34 23,26"          className="sl-ring-in" />
+      </g>
+
+      {/* Red pulse ring — expands & fades like a web shot */}
+      <circle cx="30" cy="30" r="28" className="sl-pulse" />
+
+      {/* Spider dot — throbs */}
+      <circle cx="30" cy="30" r="4.5" className="sl-spider" />
     </svg>
   </div>
 )
