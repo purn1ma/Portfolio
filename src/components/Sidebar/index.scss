@@ -1,66 +1,65 @@
-$accent-color: #ffd700;
-$base-color: #967bb6;
-
 .nav-bar {
-  background: rgba(150, 107, 183, 0.06);
-  box-shadow: 0px 0px 4px 2px rgba(150, 107, 183, 0.25);
-  // box-shadow: 4px 0px 4px -2px rgba(150, 107, 183, 0.25);
+  background: var(--bg-surface);
+  box-shadow: 0px 0px 4px 2px var(--purple-border);
   width: 70px;
   height: 100%;
   position: relative;
   top: 0;
   bottom: 0;
   z-index: 3;
+  transition: background 0.3s ease;
 
   .logo {
     display: block;
     padding: 8px 0;
+    text-align: center;
 
-    img {
+    .ps-mark {
       display: block;
-      margin: 8px auto;
-      width: 24px;
-      height: auto;
-
-      &.sub-logo {
-        width: 50px;
-      }
+      margin: 0 auto;
     }
   }
+
   nav {
     display: block;
     text-align: center;
     position: absolute;
-    height: 210px;
+    height: 265px;
     top: 50%;
-    margin-top: -120px;
+    margin-top: -140px;
     width: 100%;
 
     a {
       font-size: 22px;
-      color: #4d4d4e;
+      color: var(--nav-icon);
       display: block;
       line-height: 51px;
       height: 51px;
-      position: relative; // somehow this makes it come in a column from the row
+      position: relative;
       text-decoration: none;
+      transition: color 0.2s ease;
 
       i {
         transition: all 0.3s ease-out;
       }
+
       &:hover {
-        color: $base-color;
+        color: var(--purple);
 
         svg {
           opacity: 0;
         }
-        &:after {
+
+        &::after {
           opacity: 1;
         }
       }
-      &:after {
+
+      &::after {
         content: '';
         font-size: 9px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
         letter-spacing: 2px;
         position: absolute;
         bottom: 0;
@@ -69,40 +68,25 @@ $base-color: #967bb6;
         text-align: center;
         opacity: 0;
         transition: all 0.3s ease-out;
+        color: var(--purple);
       }
-      &:first-child {
-        &::after {
-          content: 'HOME';
-        }
-      }
+
+      &:first-child::after { content: 'HOME'; }
     }
 
-    a.about-link {
-      &:after {
-        content: 'ABOUT';
-      }
-    }
-    a.contact-link {
-      &:after {
-        content: 'CONTACT';
-      }
-    }
-    a.projects-link {
-      &:after {
-        content: 'PROJECTS';
-      }
-    }
+    a.about-link::after      { content: 'ABOUT'; }
+    a.experience-link::after { content: 'EXP'; }
+    a.projects-link::after   { content: 'PROJECTS'; }
+    a.contact-link::after    { content: 'CONTACT'; }
 
-    a.active {
-      svg {
-        color: $base-color;
-      }
+    a.active svg {
+      color: var(--purple);
     }
   }
 
   ul {
     position: absolute;
-    bottom: 20px;
+    bottom: 60px;
     width: 100%;
     display: block;
     padding: 0;
@@ -110,17 +94,25 @@ $base-color: #967bb6;
     text-align: center;
     margin: 0;
 
-    li {
-      a {
-        padding: 7px 0;
-        display: block;
-        font-size: 15px;
-        line-height: 16px;
+    li a {
+      padding: 7px 0;
+      display: block;
+      font-size: 15px;
+      line-height: 16px;
+      color: var(--nav-icon);
+      transition: color 0.2s ease;
 
-        &:hover svg {
-          color: $base-color;
-        }
+      &:hover svg {
+        color: var(--purple);
       }
     }
+  }
+
+  .theme-toggle-wrap {
+    position: absolute;
+    bottom: 16px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 }
