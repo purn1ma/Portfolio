@@ -5,13 +5,13 @@
   margin-bottom: 20vh;
   justify-content: center;
   align-items: center;
-  // background: red;
 }
+
 .cubespinner {
   animation-name: spincube;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
-  animation-duration: 12s; // to be 12s later
+  animation-duration: 12s;
   transform-style: preserve-3d;
   transform-origin: 100px 100px 0;
   margin-left: calc(-50% - 100px);
@@ -20,68 +20,66 @@
     position: absolute;
     width: 200px;
     height: 200px;
-    background: rgba(150, 107, 183, 0.04);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     font-size: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 150px 0px rgb(150, 107, 183, 0.1),
-      inset 0 0 30px 0px #967bb680;
+    box-shadow:
+      0 0 80px rgba(240, 160, 48, 0.18),
+      inset 0 0 28px rgba(240, 160, 48, 0.06);
     border-radius: 16px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+
     &:hover {
-      background: #ffffff52;
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow:
+        0 0 100px rgba(240, 160, 48, 0.28),
+        inset 0 0 32px rgba(240, 160, 48, 0.10);
     }
-    img{
+
+    img {
       height: 60%;
     }
   }
 
-  .face1 {
-    transform: translateZ(100px);
+  /* light mode — invert the glass so it reads on ivory */
+  [data-theme="light"] & div {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.09);
+    box-shadow:
+      0 0 80px rgba(192, 120, 32, 0.14),
+      inset 0 0 28px rgba(192, 120, 32, 0.05);
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.06);
+      box-shadow:
+        0 0 100px rgba(192, 120, 32, 0.22),
+        inset 0 0 32px rgba(192, 120, 32, 0.08);
+    }
   }
-  .face2 {
-    transform: rotateY(90deg) translateZ(100px);
-  }
-  .face3 {
-    transform: rotateY(90deg) rotateX(90deg) translateZ(100px);
-  }
-  .face4 {
-    transform: rotateY(180deg) rotateZ(90deg) translateZ(100px);
-  }
+
+  .face1 { transform: translateZ(100px); }
+  .face2 { transform: rotateY(90deg) translateZ(100px); }
+  .face3 { transform: rotateY(90deg) rotateX(90deg) translateZ(100px); }
+  .face4 { transform: rotateY(180deg) rotateZ(90deg) translateZ(100px); }
   .face5 {
     transform: rotateY(-90deg) rotateZ(90deg) translateZ(100px);
-    svg {
-      transform: rotateZ(180deg);
-    }
+    svg { transform: rotateZ(180deg); }
   }
   .face6 {
     transform: rotateX(-90deg) translateZ(100px);
-    svg {
-      transform: rotateZ(-90deg);
-    }
+    svg { transform: rotateZ(-90deg); }
   }
 }
 
 @keyframes spincube {
-  from,
-  to {
-    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-  }
-  16% {
-    transform: rotateY(-90deg);
-  }
-  33% {
-    transform: rotateY(-90deg) rotateZ(90deg);
-  }
-  50% {
-    transform: rotateY(-180deg) rotateZ(90deg);
-  }
-  66% {
-    transform: rotateY(-270deg) rotateZ(90deg);
-  }
-  50% {
-    transform: rotateX(-90deg) rotateZ(90deg);
-  }
+  from, to { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+  16%  { transform: rotateY(-90deg); }
+  33%  { transform: rotateY(-90deg) rotateZ(90deg); }
+  50%  { transform: rotateY(-180deg) rotateZ(90deg); }
+  66%  { transform: rotateY(-270deg) rotateZ(90deg); }
 }
 
 @media screen and (max-width: 480px) {
@@ -91,8 +89,8 @@
     margin-bottom: 24vh;
     margin-top: 2vh;
     transform: scale3d(0.5, 0.5, 0.5);
-    
   }
+
   .text-zone {
     order: 2;
   }

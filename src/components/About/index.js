@@ -1,27 +1,22 @@
-import {
-  faJsSquare,
-  faNodeJs,
-  faReact,
-} from '@fortawesome/free-brands-svg-icons'
+import { faJsSquare, faNodeJs, faReact } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
-import Loader from 'react-loaders'
 import AnimatedLetters from '../AnimatedLetters'
 
 import './index.scss'
-import { mdb, pgsql, prsm } from '../../assets/logos'
+import { sap, nextjs, pgsql } from '../../assets/logos'
 
 const About = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setLetterClass('text-animate-hover')
     }, 3000)
+    return () => clearTimeout(timer)
   }, [])
   return (
-    <>
-      <div className="container about-page">
+    <div className="container about-page">
         <div className="text-zone">
           <h1>
             <AnimatedLetters
@@ -30,35 +25,33 @@ const About = () => {
               idx={15}
             />
           </h1>
-          <p>Hey there, I am Purnmima! Welcome to my little Universe. </p>
+          <p>Hey there, I'm Purnima! Welcome to my little corner of the web.</p>
           <p>
-            {' '}
-            Recently turned 23, I'm currently in the final year of engineering
-            at BBD NIIT, Lucknow. Still experimenting with things out there. I have
-            always been fascinated by the world around me all my life and the
-            physics behind everything blows my mind out. I am super excited to
-            work on new stuff.
-           
+            I'm an SAP ABAP Developer at Genpact, where I build and enhance
+            RICEF objects — reports, user exits, BADIs, IDoc/BAPI interfaces,
+            and Smart Forms — across FI, MM, and SD modules in SAP ECC. I'm
+            actively upskilling toward S/4HANA and clean-core development with
+            CDS Views, RAP, OData, and Fiori.
           </p>
           <p>
-            {' '}
-            If you have some time please checkout my few projects! <br /> Got a
-            project in your mind? Let's make it real.
+            Outside of SAP, I enjoy building things on the web with Next.js,
+            Node.js, PostgreSQL, and React. Got a project in mind? Let's make
+            it real.
           </p>
         </div>
         <div className="stage-cube-cont">
           <div className="cubespinner">
             <div className="face1">
-              <img src={mdb} alt='MongoDB' />
+              <img src={sap} alt='SAP ABAP' />
             </div>
             <div className="face2">
-              <img src={pgsql} alt='PostgreSQL' />
+              <img src={nextjs} alt='Next.js' />
             </div>
             <div className="face3">
-              <img src={prsm} alt='Prisma' />
+              <FontAwesomeIcon icon={faReact} color="#5ED4F4" />
             </div>
             <div className="face4">
-              <FontAwesomeIcon icon={faReact} color="#5ED4F4" />
+              <img src={pgsql} alt='PostgreSQL' />
             </div>
             <div className="face5">
               <FontAwesomeIcon icon={faJsSquare} color="#EFD81D" />
@@ -69,8 +62,6 @@ const About = () => {
           </div>
         </div>
       </div>
-      <Loader type="pacman" />
-    </>
   )
 }
 
