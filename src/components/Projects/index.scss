@@ -1,38 +1,169 @@
-.project-container-skeleton {
-    width: 90vw;
+.projects-page {
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 40px;
+
+  .my-projects-title {
+    width: 100%;
+    padding-left: 5vw;
+  }
+
+  .projects-list {
+    width: 100%;
+    padding-inline: 5vw;
+    box-sizing: border-box;
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  .project-row {
+    display: flex;
     align-items: center;
-    .project-arrows {
+    gap: 56px;
+    min-width: 0;
+    animation: fadeInUp 0.8s both;
+
+    &:nth-child(1) { animation-delay: 1.2s; }
+    &:nth-child(2) { animation-delay: 1.5s; }
+
+    &.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .project-image {
+      flex: 0 0 55%;
+      min-width: 0;
+
+      img {
+        width: 100%;
+        display: block;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        box-shadow: 0 8px 40px var(--purple-border);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+          transform: scale(1.02);
+          box-shadow: 0 12px 48px var(--purple-border);
+        }
+      }
+    }
+
+    .project-details {
+      flex: 1;
+      min-width: 0;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      height: 30vh;
-    }
-  }
-  
-  .projects-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 85vw;
-    min-height: 44vh;
-    background: rgba(150, 123, 182, 0.03);
-    box-shadow: 2px 2px 4px rgba(150, 123, 182, 0.084);
-    border-radius: 20px;
-  }
-  
-  @media screen and (max-width: 480px) {
-    .project-container-skeleton {
-      flex-direction: column-reverse;
-      .project-arrows {
-        flex-direction: row;
-        margin-bottom: 20px;
-        height: auto;
-        width: 70vw;
+
+      .project-number {
+        font-size: 11px;
+        font-family: 'Inter', sans-serif;
+        color: var(--accent);
+        letter-spacing: 4px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      h2 {
+        font-size: 34px;
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin: 0 0 16px;
+        line-height: 1.1;
+      }
+
+      p {
+        font-size: 14px;
+        color: var(--text-secondary);
+        font-family: 'Inter', sans-serif;
+        font-weight: 300;
+        line-height: 1.8;
+        margin: 0 0 20px;
+      }
+
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 28px;
+
+        .tech-tag {
+          font-size: 11px;
+          font-family: 'Inter', sans-serif;
+          font-weight: 500;
+          padding: 4px 12px;
+          border-radius: 20px;
+          background: var(--purple-subtle);
+          color: var(--purple);
+          border: 1px solid var(--purple-border);
+        }
+      }
+
+      .project-actions {
+        display: flex;
+        gap: 12px;
+
+        .project-link {
+          font-size: 12px;
+          font-family: 'Inter', sans-serif;
+          font-weight: 500;
+          letter-spacing: 1px;
+          text-decoration: none;
+          padding: 8px 20px;
+          border-radius: 4px;
+          border: 1px solid var(--border);
+          color: var(--text-secondary);
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+
+          &:hover {
+            color: var(--purple);
+            border-color: var(--purple);
+            background: var(--purple-subtle);
+          }
+
+          &.live {
+            color: var(--accent);
+            border-color: var(--accent);
+
+            &:hover {
+              background: var(--glow);
+            }
+          }
+        }
       }
     }
   }
-  
+}
+
+@media screen and (max-width: 480px) {
+  .projects-page {
+    .projects-list {
+      padding-inline: 5vw;
+      gap: 48px;
+    }
+
+    .project-row,
+    .project-row.reverse {
+      flex-direction: column;
+      gap: 20px;
+
+      .project-image {
+        flex: none;
+        width: 100%;
+        min-width: 0;
+      }
+
+      .project-details h2 {
+        font-size: 26px;
+      }
+    }
+  }
+}
