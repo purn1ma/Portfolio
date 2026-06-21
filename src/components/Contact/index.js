@@ -7,52 +7,70 @@ import { Backdrop, CircularProgress } from '@mui/material'
 import AnimatedLetters from '../AnimatedLetters'
 import './index.scss'
 
-const STARS = [
-  { left: '8%',  top: '12%', animationDelay: '0.0s', width: '3px', height: '3px' },
-  { left: '88%', top: '18%', animationDelay: '0.4s', width: '4px', height: '4px' },
-  { left: '22%', top: '72%', animationDelay: '0.7s', width: '2px', height: '2px' },
-  { left: '72%', top: '62%', animationDelay: '0.2s', width: '3px', height: '3px' },
-  { left: '50%', top: '8%',  animationDelay: '0.6s', width: '2px', height: '2px' },
-  { left: '12%', top: '48%', animationDelay: '1.0s', width: '4px', height: '4px' },
-  { left: '92%', top: '78%', animationDelay: '0.3s', width: '2px', height: '2px' },
-  { left: '38%', top: '88%', animationDelay: '0.9s', width: '3px', height: '3px' },
-  { left: '62%', top: '32%', animationDelay: '0.5s', width: '4px', height: '4px' },
-  { left: '4%',  top: '65%', animationDelay: '0.8s', width: '2px', height: '2px' },
-  { left: '78%', top: '92%', animationDelay: '0.1s', width: '3px', height: '3px' },
-  { left: '32%', top: '22%', animationDelay: '1.1s', width: '2px', height: '2px' },
-  { left: '55%', top: '55%', animationDelay: '0.35s', width: '3px', height: '3px' },
-  { left: '18%', top: '30%', animationDelay: '0.75s', width: '2px', height: '2px' },
-  { left: '96%', top: '45%', animationDelay: '0.55s', width: '4px', height: '4px' },
-]
+const SpiderSVG = () => (
+  <svg viewBox="0 0 100 88" className="spider-svg" aria-hidden="true">
+    {/* Head */}
+    <ellipse cx="50" cy="22" rx="13" ry="10" className="s-body" />
+
+    {/* Eyes — Spiderman pointed-inward style */}
+    <path d="M 36 19 L 43 17 L 48 21 L 48 27 L 43 30 L 36 27 Z" className="s-eye" />
+    <path d="M 52 21 L 57 17 L 64 19 L 64 27 L 57 30 L 52 27 Z" className="s-eye" />
+
+    {/* Abdomen */}
+    <ellipse cx="50" cy="51" rx="15" ry="19" className="s-body" />
+
+    {/* Left legs */}
+    <path d="M 37 28 Q 22 22, 7 20"  className="s-leg" />
+    <path d="M 36 38 Q 18 38, 3 40"  className="s-leg" />
+    <path d="M 36 52 Q 18 56, 3 62"  className="s-leg" />
+    <path d="M 37 64 Q 22 72, 8 80"  className="s-leg" />
+
+    {/* Right legs */}
+    <path d="M 63 28 Q 78 22, 93 20" className="s-leg" />
+    <path d="M 64 38 Q 82 38, 97 40" className="s-leg" />
+    <path d="M 64 52 Q 82 56, 97 62" className="s-leg" />
+    <path d="M 63 64 Q 78 72, 92 80" className="s-leg" />
+  </svg>
+)
 
 const SuccessScreen = ({ onClose }) => {
   useEffect(() => {
-    const t = setTimeout(onClose, 4200)
+    const t = setTimeout(onClose, 5000)
     return () => clearTimeout(t)
   }, [onClose])
 
   return (
-    <div className="success-overlay" onClick={onClose}>
-      <div className="success-stars">
-        {STARS.map((s, i) => (
-          <span key={i} className="success-star" style={s} />
-        ))}
+    <div className="spidey-overlay" onClick={onClose}>
+
+      {/* Corner web — top-right */}
+      <svg className="corner-web" viewBox="0 0 110 110" preserveAspectRatio="xMaxYMin meet">
+        <line className="w-spoke" x1="110" y1="0" x2="0"   y2="0"   style={{ animationDelay: '0.00s' }} />
+        <line className="w-spoke" x1="110" y1="0" x2="0"   y2="28"  style={{ animationDelay: '0.07s' }} />
+        <line className="w-spoke" x1="110" y1="0" x2="0"   y2="60"  style={{ animationDelay: '0.14s' }} />
+        <line className="w-spoke" x1="110" y1="0" x2="22"  y2="110" style={{ animationDelay: '0.21s' }} />
+        <line className="w-spoke" x1="110" y1="0" x2="60"  y2="110" style={{ animationDelay: '0.28s' }} />
+        <line className="w-spoke" x1="110" y1="0" x2="110" y2="110" style={{ animationDelay: '0.35s' }} />
+        <polyline className="w-ring" points="84,0 85,7 87,13 91,17 96,20 110,21"    style={{ animationDelay: '0.50s' }} />
+        <polyline className="w-ring" points="58,0 60,14 64,27 71,36 83,42 110,44"  style={{ animationDelay: '0.68s' }} />
+        <polyline className="w-ring" points="32,0 35,21 41,40 52,55 69,64 110,67"  style={{ animationDelay: '0.86s' }} />
+        <polyline className="w-ring" points="6,0  10,28 18,54 32,72 55,85 110,88"  style={{ animationDelay: '1.04s' }} />
+      </svg>
+
+      {/* Spider drops on web thread */}
+      <div className="spider-drop">
+        <div className="web-thread" />
+        <SpiderSVG />
       </div>
 
-      <div className="success-content">
-        <div className="rocket-scene">
-          <div className="rocket-emoji">🚀</div>
-          <div className="rocket-trail">
-            <span /><span /><span /><span />
-          </div>
-        </div>
+      {/* THWIP! */}
+      <div className="thwip-bubble">THWIP!</div>
 
-        <p className="success-code">
-          <span className="code-prompt">&gt;</span> message.send()
-        </p>
-        <h2 className="success-heading">Delivered!</h2>
-        <p className="success-sub">I'll get back to you soon.</p>
-        <p className="success-dismiss">tap anywhere to close</p>
+      {/* Message */}
+      <div className="spidey-content">
+        <p className="spidey-tagline">your friendly neighbourhood developer</p>
+        <h2 className="spidey-heading">Message Sent!</h2>
+        <p className="spidey-sub">I'll swing back to you shortly</p>
+        <p className="spidey-dismiss">tap anywhere to close</p>
       </div>
     </div>
   )
@@ -65,16 +83,13 @@ const Contact = () => {
   const refForm = useRef()
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLetterClass('text-animate-hover')
-    }, 3000)
+    const timer = setTimeout(() => setLetterClass('text-animate-hover'), 3000)
     return () => clearTimeout(timer)
   }, [])
 
   const sendEmail = (e) => {
     e.preventDefault()
     setLoading(true)
-
     emailjs
       .sendForm(
         'solitude_of_barnacle',
@@ -138,24 +153,14 @@ const Contact = () => {
         <div className="contact-info">
           <p className="connect-label">or find me here</p>
           <div className="contact-items">
-            <a
-              href="https://www.linkedin.com/in/purnima-shrivastava/"
-              target="_blank"
-              rel="noreferrer"
-              className="contact-item"
-            >
+            <a href="https://www.linkedin.com/in/purnima-shrivastava/" target="_blank" rel="noreferrer" className="contact-item">
               <div className="item-icon"><FontAwesomeIcon icon={faLinkedin} /></div>
               <div className="item-text">
                 <span className="item-label">LinkedIn</span>
                 <span className="item-value">purnima-shrivastava</span>
               </div>
             </a>
-            <a
-              href="https://github.com/purn1ma"
-              target="_blank"
-              rel="noreferrer"
-              className="contact-item"
-            >
+            <a href="https://github.com/purn1ma" target="_blank" rel="noreferrer" className="contact-item">
               <div className="item-icon"><FontAwesomeIcon icon={faGithub} /></div>
               <div className="item-text">
                 <span className="item-label">GitHub</span>
@@ -177,10 +182,7 @@ const Contact = () => {
         </div>
       </div>
 
-      <Backdrop
-        sx={{ color: 'var(--accent)', zIndex: 1400 }}
-        open={loading}
-      >
+      <Backdrop sx={{ color: 'var(--accent)', zIndex: 1400 }} open={loading}>
         <CircularProgress color="inherit" />
       </Backdrop>
 
