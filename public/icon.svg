@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="72" fill="#0f0e0c"/>
+  <text x="256" y="190" text-anchor="middle" dominant-baseline="middle"
+    font-family="system-ui, -apple-system, 'Segoe UI', Arial, sans-serif"
+    font-weight="800" font-size="210" fill="#f0a030">P</text>
+  <rect x="130" y="254" width="252" height="7" rx="3.5" fill="#f0a030" opacity="0.30"/>
+  <text x="256" y="338" text-anchor="middle" dominant-baseline="middle"
+    font-family="system-ui, -apple-system, 'Segoe UI', Arial, sans-serif"
+    font-weight="800" font-size="210" fill="#f0a030">S</text>
+</svg>

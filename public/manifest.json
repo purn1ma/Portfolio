@@ -1,6 +1,7 @@
 {
-  "short_name": "PS",
-  "name": "Purnima Shrivastava",
+  "short_name": "Purnima",
+  "name": "Purnima Shrivastava — Portfolio",
+  "description": "SAP ABAP Developer specializing in S/4HANA, RICEF development, and enterprise systems integration.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,18 +9,14 @@
       "type": "image/x-icon"
     },
     {
-      "src": "P_logo.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "P_logo.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#f0a030",
+  "background_color": "#0f0e0c"
 }
