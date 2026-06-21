@@ -1,14 +1,5 @@
-$primary-color: #ffd700;
-
 @import 'animate.css';
 @import '~loaders.css/src/animations/pacman.scss';
-
-@font-face {
-  font-family: 'Helvetica Neue';
-  src: url('./assets/fonts/helvetica-neu.ttf') format('ttf');
-  font-weight: normal;
-  font-style: normal;
-}
 
 @font-face {
   font-family: 'La Belle Aurore';
@@ -28,23 +19,46 @@ $primary-color: #ffd700;
 
 input,
 textarea {
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .loader-hidden {
-  display: none;
+  /* override loaders.css display:none so we can transition */
+  display: block !important;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+  z-index: 999;
 }
 
 .loader-active {
   display: block;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  top: 0;
-  bottom: 0;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
   width: 50px;
   height: 50px;
-  animation: fadeOut 1s 1s;
-  animation-fill-mode: forwards;
+  z-index: 999;
+  opacity: 1;
+  transition: opacity 0.15s ease-in, transform 0.15s ease-out;
+}
+
+/* loaders.css pacman uses hardcoded white — override for light mode */
+[data-theme="light"] {
+  .pacman > div:nth-child(1),
+  .pacman > div:nth-child(2) {
+    border-top-color: var(--purple) !important;
+    border-left-color: var(--purple) !important;
+    border-bottom-color: var(--purple) !important;
+  }
+  .pacman > div:nth-child(3),
+  .pacman > div:nth-child(4),
+  .pacman > div:nth-child(5) {
+    background-color: var(--purple) !important;
+  }
 }
