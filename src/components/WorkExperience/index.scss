@@ -1,0 +1,151 @@
+.experience-page {
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 40px;
+
+  .exp-title {
+    width: 100%;
+    padding-left: 5vw;
+
+    h1 {
+      font-size: 52px;
+      font-family: 'Space Grotesk', sans-serif;
+  
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 0;
+      margin-bottom: 40px;
+      position: relative;
+      left: 10px;
+
+      &::before {
+        content: '<h1>';
+        font-family: 'La Belle Aurore';
+        font-size: 18px;
+        position: absolute;
+        margin-top: -10px;
+        left: -10px;
+        opacity: 0.5;
+        line-height: 18px;
+        font-style: normal;
+      }
+
+      &::after {
+        content: '</h1>';
+        font-family: 'La Belle Aurore';
+        font-size: 18px;
+        line-height: 18px;
+        position: absolute;
+        bottom: -10px;
+        left: -30px;
+        margin-left: 20px;
+        opacity: 0.5;
+        font-style: normal;
+      }
+    }
+  }
+
+  .experience-timeline {
+    width: 100%;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    box-sizing: border-box;
+  }
+
+  .experience-card {
+    border-left: 2px solid var(--accent);
+    padding-left: 28px;
+    margin-bottom: 40px;
+    animation: fadeInUp 1s 1.2s both;
+
+    .exp-header {
+      margin-bottom: 16px;
+    }
+
+    .exp-company {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .exp-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+
+      span {
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+      }
+
+      .exp-role {
+        color: var(--purple);
+        font-weight: 500;
+      }
+
+      .exp-period,
+      .exp-location {
+        color: var(--text-secondary);
+      }
+    }
+
+    .exp-points {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        color: var(--text-primary);
+        font-size: 13px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 300;
+        line-height: 1.8;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border);
+        animation: fadeInUp 0.5s both;
+
+        &::before {
+          content: '▹';
+          color: var(--accent);
+          margin-right: 10px;
+        }
+
+        &:nth-child(1) { animation-delay: 1.3s; }
+        &:nth-child(2) { animation-delay: 1.4s; }
+        &:nth-child(3) { animation-delay: 1.5s; }
+        &:nth-child(4) { animation-delay: 1.6s; }
+        &:nth-child(5) { animation-delay: 1.7s; }
+        &:nth-child(6) { animation-delay: 1.8s; }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .experience-page {
+    .exp-title {
+      padding-left: 8vw;
+
+      h1 {
+        font-size: 40px;
+      }
+    }
+
+    .experience-timeline {
+      padding-left: 8vw;
+      padding-right: 4vw;
+    }
+
+    .experience-card {
+      padding-left: 16px;
+
+      .exp-company {
+        font-size: 18px;
+      }
+    }
+  }
+}
