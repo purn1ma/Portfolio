@@ -1,26 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import Loader from 'react-loaders'
 import { Link } from 'react-router-dom'
 
-import LogoTitle from '../../assets/images/P_logo.png' //P-logo-32px.svg
 import AnimatedLetters from '../AnimatedLetters'
-// import Logo from './Logo/P_logo.png' // ./Logo
 import './index.scss'
 
 const Home = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
   const nameArray = 'urnima'.split('')
-  const jobArray = 'Software Developer.'.split('')
+  const jobArray = 'SAP ABAP Developer.'.split('')
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setLetterClass('text-animate-hover')
     }, 5100)
+    return () => clearTimeout(timer)
   }, [])
 
   return (
-    <>
-      <div className="container home-page">
+    <div className="container home-page">
         <div className="text-zone">
           <div className="intro-text">
             <h1>
@@ -32,7 +29,7 @@ const Home = () => {
               <span className={`${letterClass} _15`}>'</span>
               <span className={`${letterClass} _16`}>m</span>
 
-              <img src={LogoTitle} alt="developer" />
+              <span className="p-initial"> P</span>
               <AnimatedLetters
                 letterClass={letterClass}
                 strArray={nameArray}
@@ -47,18 +44,18 @@ const Home = () => {
             </h1>
           </div>
           <h2>
-            Frontend / Backend / Database / <br /> ReactJs / JavaScript /
-            NodeJs
-
+            SAP ABAP / S/4HANA / Node.js / <br /> Next.js / React / PostgreSQL
           </h2>
-          <Link to="/contact" className="flat-button">
-            CONTACT ME
-          </Link>
+          <div className="cta-buttons">
+            <Link to="/contact" className="flat-button">
+              CONTACT ME
+            </Link>
+            <Link to="/resume" className="flat-button secondary">
+              VIEW RESUME
+            </Link>
+          </div>
         </div>
-        {/* <Logo /> */}
       </div>
-      <Loader type="pacman" />
-    </>
   )
 }
 

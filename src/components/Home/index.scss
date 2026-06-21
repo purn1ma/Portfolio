@@ -1,95 +1,115 @@
 .home-page {
-    .text-zone {
-      max-height: 90%;
-    }
-    .intro-text {
-      position: relative;
-      h1 {
-        margin-top: 2vh;
-  
-        color: #fff;
-        font-size: 53px;
-        font-family: 'Coolvetica';
-        font-weight: 400;
-        &::before {
-          content: '<h1>';
-          font-family: 'La Belle Aurore';
-          color: #ffd700;
-          font-size: 18px;
-          position: absolute;
-          top: -10px;
-          opacity: 0.6;
-          left: -36px;
-        }
-        &::after {
-          content: '</h1>';
-          font-family: 'La Belle Aurore';
-          color: #ffd700;
-          font-size: 18px;
-          position: absolute;
-          left: -32px;
-          opacity: 0.6;
-          animation: fadeIn 1s 1.7s backwards;
-          bottom: -16px;
-        }
-  
-        img {
-          width: 36px;
-          margin-left: 20px;
-          margin-right: 4px;
-          opacity: 0;
-          height: auto;
-          animation: rotateIn 1s linear both;
-          animation-delay: 1.4s;
-        }
+  .text-zone {
+    max-height: 90%;
+  }
+
+  .intro-text {
+    position: relative;
+
+    h1 {
+      margin-top: 2vh;
+      color: var(--text-primary);
+      font-size: 53px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+
+      &::before {
+        content: '<h1>';
+        font-family: 'La Belle Aurore';
+        color: var(--accent);
+        font-size: 18px;
+        position: absolute;
+        top: -10px;
+        opacity: 0.5;
+        left: -36px;
+        font-style: normal;
+      }
+
+      &::after {
+        content: '</h1>';
+        font-family: 'La Belle Aurore';
+        color: var(--accent);
+        font-size: 18px;
+        position: absolute;
+        left: -32px;
+        opacity: 0.5;
+        animation: fadeIn 1s 1.7s backwards;
+        bottom: -16px;
+        font-style: normal;
+      }
+
+      .p-initial {
+        color: var(--accent);
+        opacity: 0;
+        animation: rotateIn 1s linear both;
+        animation-delay: 1.4s;
       }
     }
-    h2 {
-      color: #8d8d8d;
-      margin-top: 20px;
-      font-weight: 400;
-      font-size: 11px;
-      font-family: sans-serif;
-      letter-spacing: 3px;
-      animation: fadeIn 1s 1.8s backwards;
+  }
+
+  h2 {
+    color: var(--text-secondary);
+    margin-top: 20px;
+    font-weight: 400;
+    font-size: 11px;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 3px;
+    animation: fadeIn 1s 1.8s backwards;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    animation: fadeIn 1s 1.8s backwards;
+  }
+
+  .flat-button {
+    color: var(--accent);
+    font-weight: 500;
+    letter-spacing: 4px;
+    font-family: 'Inter', sans-serif;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid var(--accent);
+    white-space: nowrap;
+    transition: background 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      background: var(--accent);
+      color: var(--bg);
     }
-  
-    .flat-button {
-      color: #ffd700;
-      margin-top: 13px;
-      font-weight: 400;
-      letter-spacing: 4px;
-      font-family: sans-serif;
-      text-decoration: none;
-      padding: 10px 18px;
-      border: 1px solid #ffd700;
-      margin-top: 25px;
-      float: left;
-      animation: fadeIn 1s 1.8s backwards;
-      white-space: nowrap;
-  
+
+    &.secondary {
+      color: var(--text-primary);
+      border-color: var(--text-secondary);
+
       &:hover {
-        background: #ffd700;
-        color: #333;
+        background: var(--purple-subtle);
+        color: var(--purple);
+        border-color: var(--purple);
       }
     }
   }
-  
-  @media screen and (max-width: 480px) {
-    .home-page {
-      .intro-text {
-        h1 {
-          font-size: 32px;
-          &::before {
-            left: 6px;
-            top: -14px;
-          }
-          &::after {
-            left: 4px;
-            bottom: -20px;
-          }
+}
+
+@media screen and (max-width: 480px) {
+  .home-page {
+    .intro-text {
+      h1 {
+        font-size: 32px;
+
+        &::before {
+          left: 6px;
+          top: -14px;
+        }
+
+        &::after {
+          left: 4px;
+          bottom: -20px;
         }
       }
     }
   }
-  
+}
