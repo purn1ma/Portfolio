@@ -1,5 +1,5 @@
-import mdb from './mdb.svg'
+import sap from './sap.svg'
+import nextjs from './nextjs.svg'
 import pgsql from './pgsql.svg'
-import prsm from './prsm.svg'
 
-export { prsm, pgsql, mdb }
+export { sap, nextjs, pgsql }

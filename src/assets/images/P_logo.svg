@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 48" fill="none">
+  <defs>
+    <mask id="pm">
+      <rect width="40" height="48" fill="black"/>
+      <path fill="white" d="M5 4 H12 C30 4 36 8 36 16 C36 24 30 28 12 28 V44 H5 Z"/>
+      <path fill="black" d="M12 10 C26 10 30 12 30 16 C30 20 26 22 12 22 Z"/>
+    </mask>
+  </defs>
+  <rect width="40" height="48" fill="#f0a030" mask="url(#pm)"/>
+</svg>

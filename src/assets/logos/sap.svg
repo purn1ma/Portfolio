@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" overflow="hidden">
+  <defs>
+    <clipPath id="clip">
+      <rect width="180" height="180"/>
+    </clipPath>
+  </defs>
+  <text
+    x="90"
+    y="90"
+    clip-path="url(#clip)"
+    dominant-baseline="middle"
+    text-anchor="middle"
+    font-family="Arial, sans-serif"
+    font-weight="700"
+    font-size="52"
+    textLength="140"
+    lengthAdjust="spacingAndGlyphs"
+    fill="#009FE3"
+  >SAP</text>
+</svg>
