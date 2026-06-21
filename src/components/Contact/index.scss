@@ -1,3 +1,143 @@
+/* ── Success overlay ──────────────────────────────── */
+
+.success-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 14, 12, 0.93);
+  backdrop-filter: blur(14px);
+  cursor: pointer;
+  animation: fadeIn 0.35s ease;
+}
+
+.success-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.success-star {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+  animation: starTwinkle 2.4s ease-in-out infinite;
+}
+
+.success-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  user-select: none;
+}
+
+.rocket-scene {
+  position: relative;
+  height: 160px;
+  width: 120px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.rocket-emoji {
+  font-size: 72px;
+  line-height: 1;
+  position: relative;
+  z-index: 2;
+  animation: rocketLaunch 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
+  filter: drop-shadow(0 0 24px rgba(240, 160, 48, 0.5));
+}
+
+.rocket-trail {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding-bottom: 4px;
+
+  span {
+    border-radius: 50%;
+    background: var(--accent);
+    animation: trailPulse 0.35s ease-in-out infinite alternate;
+
+    &:nth-child(1) { width: 18px; height: 18px; opacity: 0.85; animation-delay: 0.00s; }
+    &:nth-child(2) { width: 13px; height: 13px; opacity: 0.55; animation-delay: 0.08s; }
+    &:nth-child(3) { width: 8px;  height: 8px;  opacity: 0.28; animation-delay: 0.16s; }
+    &:nth-child(4) { width: 4px;  height: 4px;  opacity: 0.10; animation-delay: 0.24s; }
+  }
+}
+
+.success-code {
+  font-family: 'La Belle Aurore', cursive;
+  font-size: 17px;
+  color: var(--accent);
+  opacity: 0;
+  animation: fadeInUp 0.5s ease 1.6s both;
+  margin: 0;
+
+  .code-prompt { opacity: 0.45; margin-right: 8px; }
+}
+
+.success-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 4px 0 0;
+  letter-spacing: -1px;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease 1.85s both;
+}
+
+.success-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin: 0;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease 2.05s both;
+}
+
+.success-dismiss {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 28px;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease 2.6s both;
+}
+
+@keyframes rocketLaunch {
+  0%   { transform: translateY(10px) scale(1);      opacity: 1; }
+  40%  { transform: translateY(-60px) scale(1.1);   opacity: 1; }
+  100% { transform: translateY(-190px) scale(0.25); opacity: 0; }
+}
+
+@keyframes trailPulse {
+  from { transform: scaleX(0.75); opacity: 0.6; }
+  to   { transform: scaleX(1.25); }
+}
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0;   transform: scale(0.4); }
+  50%       { opacity: 0.9; transform: scale(1);   }
+}
+
+/* ── Contact info panel ───────────────────────────── */
+
 .contact-info {
   display: flex;
   flex-direction: column;

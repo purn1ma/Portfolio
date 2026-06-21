@@ -7,9 +7,61 @@ import { Backdrop, CircularProgress } from '@mui/material'
 import AnimatedLetters from '../AnimatedLetters'
 import './index.scss'
 
+const STARS = [
+  { left: '8%',  top: '12%', animationDelay: '0.0s', width: '3px', height: '3px' },
+  { left: '88%', top: '18%', animationDelay: '0.4s', width: '4px', height: '4px' },
+  { left: '22%', top: '72%', animationDelay: '0.7s', width: '2px', height: '2px' },
+  { left: '72%', top: '62%', animationDelay: '0.2s', width: '3px', height: '3px' },
+  { left: '50%', top: '8%',  animationDelay: '0.6s', width: '2px', height: '2px' },
+  { left: '12%', top: '48%', animationDelay: '1.0s', width: '4px', height: '4px' },
+  { left: '92%', top: '78%', animationDelay: '0.3s', width: '2px', height: '2px' },
+  { left: '38%', top: '88%', animationDelay: '0.9s', width: '3px', height: '3px' },
+  { left: '62%', top: '32%', animationDelay: '0.5s', width: '4px', height: '4px' },
+  { left: '4%',  top: '65%', animationDelay: '0.8s', width: '2px', height: '2px' },
+  { left: '78%', top: '92%', animationDelay: '0.1s', width: '3px', height: '3px' },
+  { left: '32%', top: '22%', animationDelay: '1.1s', width: '2px', height: '2px' },
+  { left: '55%', top: '55%', animationDelay: '0.35s', width: '3px', height: '3px' },
+  { left: '18%', top: '30%', animationDelay: '0.75s', width: '2px', height: '2px' },
+  { left: '96%', top: '45%', animationDelay: '0.55s', width: '4px', height: '4px' },
+]
+
+const SuccessScreen = ({ onClose }) => {
+  useEffect(() => {
+    const t = setTimeout(onClose, 4200)
+    return () => clearTimeout(t)
+  }, [onClose])
+
+  return (
+    <div className="success-overlay" onClick={onClose}>
+      <div className="success-stars">
+        {STARS.map((s, i) => (
+          <span key={i} className="success-star" style={s} />
+        ))}
+      </div>
+
+      <div className="success-content">
+        <div className="rocket-scene">
+          <div className="rocket-emoji">🚀</div>
+          <div className="rocket-trail">
+            <span /><span /><span /><span />
+          </div>
+        </div>
+
+        <p className="success-code">
+          <span className="code-prompt">&gt;</span> message.send()
+        </p>
+        <h2 className="success-heading">Delivered!</h2>
+        <p className="success-sub">I'll get back to you soon.</p>
+        <p className="success-dismiss">tap anywhere to close</p>
+      </div>
+    </div>
+  )
+}
+
 const Contact = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
-  const [open, setOpen] = React.useState(false)
+  const [loading, setLoading] = React.useState(false)
+  const [sent, setSent] = React.useState(false)
   const refForm = useRef()
 
   useEffect(() => {
@@ -21,7 +73,7 @@ const Contact = () => {
 
   const sendEmail = (e) => {
     e.preventDefault()
-    setOpen(true)
+    setLoading(true)
 
     emailjs
       .sendForm(
@@ -32,12 +84,12 @@ const Contact = () => {
       )
       .then(
         () => {
-          alert('Message successfully sent!')
-          window.location.reload(false)
-          setOpen(false)
+          setLoading(false)
+          setSent(true)
+          refForm.current.reset()
         },
         (err) => {
-          setOpen(false)
+          setLoading(false)
           console.log(err)
           alert('Failed to send the message, please try again.')
         }
@@ -92,9 +144,7 @@ const Contact = () => {
               rel="noreferrer"
               className="contact-item"
             >
-              <div className="item-icon">
-                <FontAwesomeIcon icon={faLinkedin} />
-              </div>
+              <div className="item-icon"><FontAwesomeIcon icon={faLinkedin} /></div>
               <div className="item-text">
                 <span className="item-label">LinkedIn</span>
                 <span className="item-value">purnima-shrivastava</span>
@@ -106,18 +156,14 @@ const Contact = () => {
               rel="noreferrer"
               className="contact-item"
             >
-              <div className="item-icon">
-                <FontAwesomeIcon icon={faGithub} />
-              </div>
+              <div className="item-icon"><FontAwesomeIcon icon={faGithub} /></div>
               <div className="item-text">
                 <span className="item-label">GitHub</span>
                 <span className="item-value">purn1ma</span>
               </div>
             </a>
             <div className="contact-item static">
-              <div className="item-icon">
-                <FontAwesomeIcon icon={faLocationDot} />
-              </div>
+              <div className="item-icon"><FontAwesomeIcon icon={faLocationDot} /></div>
               <div className="item-text">
                 <span className="item-label">Location</span>
                 <span className="item-value">Noida, India</span>
@@ -130,12 +176,15 @@ const Contact = () => {
           </div>
         </div>
       </div>
+
       <Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={open}
+        sx={{ color: 'var(--accent)', zIndex: 1400 }}
+        open={loading}
       >
         <CircularProgress color="inherit" />
       </Backdrop>
+
+      {sent && <SuccessScreen onClose={() => setSent(false)} />}
     </>
   )
 }
