@@ -1,6 +1,10 @@
 .home-page {
+  position: relative; /* needed for absolute web-wrap positioning */
+
   .text-zone {
     max-height: 90%;
+    position: relative;
+    z-index: 1;
   }
 
   .intro-text {
@@ -109,7 +113,31 @@
   }
 }
 
+/* Right-side decorative web */
+.home-web-wrap {
+  position: absolute;
+  right: 2vw;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.home-web-decor {
+  width: clamp(240px, 36vw, 420px);
+  height: auto;
+  display: block;
+  opacity: 0.075;
+  animation: homeWebSpin 120s linear infinite;
+}
+
+@keyframes homeWebSpin {
+  to { transform: rotate(360deg); }
+}
+
 @media screen and (max-width: 480px) {
+  .home-web-wrap { display: none; } /* too much for small screens */
+
   .home-page {
     .intro-text {
       h1 {

@@ -40,6 +40,7 @@ const About = () => {
           </p>
         </div>
         <div className="stage-cube-cont">
+          <div className="cube-hexbg" aria-hidden="true" />
           <div className="cubespinner">
             <div className="face1">
               <img src={sap} alt='SAP ABAP' />

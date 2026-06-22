@@ -81,7 +81,7 @@ const Layout = () => {
 
   return (
     <div className="app">
-      <WebCornerDecor />
+      <WebCornerDecor key={location.pathname} />
       <div className="navbar">
         {width > 480 && <Sidebar />}
         {width <= 480 && <BottomBar />}
