@@ -18,20 +18,25 @@
 
 [data-theme="light"] {
   /* light – warm ivory */
-  --bg:              #f8f5f0;
-  --bg-surface:      #edeae3;
+  --bg:              #faf8f4;
+  --bg-surface:      #f0ece2;
   --bg-card:         #ffffff;
-  --text-primary:    #1c1916;
-  --text-secondary:  #5a5550;
-  --text-muted:      #9a958e;
-  --accent:          #c07820;
+  --text-primary:    #1a1714;
+  --text-secondary:  #64605a;
+  --text-muted:      #a09890;
+  --accent:          #d4780c;
   --accent-hover:    #f0a030;
   --purple:          #4d7a68;
   --purple-subtle:   rgba(77, 122, 104, 0.09);
   --purple-border:   rgba(77, 122, 104, 0.22);
-  --nav-icon:        #9a958e;
-  --border:          rgba(28, 25, 22, 0.11);
-  --glow:            rgba(192, 120, 32, 0.06);
+  --nav-icon:        #a09890;
+  --border:          rgba(28, 25, 22, 0.12);
+  --glow:            rgba(212, 120, 12, 0.12);
+}
+
+/* Next.js logo is a light mark — invert it on white/cream surfaces */
+[data-theme="light"] .logo-next {
+  filter: invert(0.88);
 }
 
 /* radial reveal transition */
