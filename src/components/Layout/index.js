@@ -6,6 +6,24 @@ import BottomBar from '../BottomBar'
 import ThemeToggle from '../ThemeToggle'
 import './index.scss'
 
+/* Faint corner web — appears on every page as a recurring visual motif */
+const WebCornerDecor = () => (
+  <svg className="web-corner-decor" viewBox="0 0 110 110" aria-hidden="true">
+    <g stroke="var(--accent)" strokeWidth="0.75" fill="none">
+      <line x1="110" y1="0" x2="0"   y2="0" />
+      <line x1="110" y1="0" x2="0"   y2="28" />
+      <line x1="110" y1="0" x2="0"   y2="60" />
+      <line x1="110" y1="0" x2="22"  y2="110" />
+      <line x1="110" y1="0" x2="60"  y2="110" />
+      <line x1="110" y1="0" x2="110" y2="110" />
+      <polyline points="84,0 85,7 87,13 91,17 96,20 110,21" />
+      <polyline points="58,0 60,14 64,27 71,36 83,42 110,44" />
+      <polyline points="32,0 35,21 41,40 52,55 69,64 110,67" />
+      <polyline points="6,0  10,28 18,54 32,72 55,85 110,88" />
+    </g>
+  </svg>
+)
+
 /*
  * Two-layer counter-rotating web + expanding pulse ring:
  *   – Outer layer (spokes + outer hex ring): spins clockwise at 2.5 s/rev
@@ -63,6 +81,7 @@ const Layout = () => {
 
   return (
     <div className="app">
+      <WebCornerDecor key={location.pathname} />
       <div className="navbar">
         {width > 480 && <Sidebar />}
         {width <= 480 && <BottomBar />}

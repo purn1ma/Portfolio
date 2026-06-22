@@ -40,12 +40,13 @@ const About = () => {
           </p>
         </div>
         <div className="stage-cube-cont">
+          <div className="cube-hexbg" aria-hidden="true" />
           <div className="cubespinner">
             <div className="face1">
               <img src={sap} alt='SAP ABAP' />
             </div>
             <div className="face2">
-              <img src={nextjs} alt='Next.js' />
+              <img src={nextjs} alt='Next.js' className="logo-next" />
             </div>
             <div className="face3">
               <FontAwesomeIcon icon={faReact} color="#5ED4F4" />

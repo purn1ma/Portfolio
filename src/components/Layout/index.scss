@@ -19,6 +19,39 @@
   }
 }
 
+/* Global faint corner web — subtle Spiderman motif on every page */
+.web-corner-decor {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: clamp(160px, 30vmin, 260px);
+  height: clamp(160px, 30vmin, 260px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.065;
+
+  /* Each stroke draws itself in on mount — web spinning into existence */
+  line, polyline {
+    stroke-dasharray: 180;
+    stroke-dashoffset: 180;
+    animation: webStrokeDraw 1.4s ease-out both;
+  }
+
+  /* Stagger lines then rings — spokes first, then concentric strands */
+  @for $i from 1 through 10 {
+    g > *:nth-child(#{$i}) { animation-delay: #{$i * 0.06}s; }
+  }
+}
+
+@keyframes webStrokeDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Slightly more visible on desktop where there's room to breathe */
+@media (min-width: 768px) {
+  .web-corner-decor { opacity: 0.09; }
+}
+
 .navbar {
   position: fixed;
   top: 0;

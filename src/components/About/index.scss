@@ -5,59 +5,63 @@
   margin-bottom: 20vh;
   justify-content: center;
   align-items: center;
+  position: relative;
+  overflow: visible;
+}
+
+/* Hex-web texture behind the cube — radial fade so it's concentrated at the cube centre */
+.cube-hexbg {
+  position: absolute;
+  inset: -60px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.16;
+  background-image:
+    repeating-linear-gradient(0deg,   transparent, transparent 18px, var(--accent) 18px, var(--accent) 19.2px),
+    repeating-linear-gradient(60deg,  transparent, transparent 18px, var(--accent) 18px, var(--accent) 19.2px),
+    repeating-linear-gradient(120deg, transparent, transparent 18px, var(--accent) 18px, var(--accent) 19.2px);
+  -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 20%, transparent 72%);
+  mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 20%, transparent 72%);
 }
 
 .cubespinner {
   animation-name: spincube;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-duration: 12s;
   transform-style: preserve-3d;
   transform-origin: 100px 100px 0;
   margin-left: calc(-50% - 100px);
+  position: relative;
+  z-index: 1;
 
   div {
     position: absolute;
     width: 200px;
     height: 200px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(12, 10, 8, 0.92);
+    border: 1px solid rgba(240, 160, 48, 0.18);
     font-size: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow:
-      0 0 80px rgba(240, 160, 48, 0.18),
-      inset 0 0 28px rgba(240, 160, 48, 0.06);
     border-radius: 16px;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
+    backface-visibility: hidden;
+    /* Breathing glow: amber at rest → Spiderman-red at peak */
+    animation: cubeGlow 2.8s ease-in-out infinite;
 
-    &:hover {
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow:
-        0 0 100px rgba(240, 160, 48, 0.28),
-        inset 0 0 32px rgba(240, 160, 48, 0.10);
-    }
-
-    img {
-      height: 60%;
-    }
+    img { height: 60%; }
   }
 
-  /* light mode — invert the glass so it reads on ivory */
   [data-theme="light"] & div {
-    background: rgba(0, 0, 0, 0.03);
-    border-color: rgba(0, 0, 0, 0.09);
+    /* distinct card — lifts off the ivory background instead of blending in */
+    background: rgba(255, 253, 249, 0.96);
+    border-color: rgba(160, 118, 36, 0.32);
     box-shadow:
-      0 0 80px rgba(192, 120, 32, 0.14),
-      inset 0 0 28px rgba(192, 120, 32, 0.05);
-
-    &:hover {
-      background: rgba(0, 0, 0, 0.06);
-      box-shadow:
-        0 0 100px rgba(192, 120, 32, 0.22),
-        inset 0 0 32px rgba(192, 120, 32, 0.08);
-    }
+      0 6px 28px rgba(0, 0, 0, 0.12),
+      0 0 40px rgba(192, 120, 32, 0.10),
+      inset 0 0 18px rgba(192, 120, 32, 0.04);
+    animation: cubeGlowLight 2.8s ease-in-out infinite;
   }
 
   .face1 { transform: translateZ(100px); }
@@ -74,12 +78,67 @@
   }
 }
 
+/* Hex grid breathes slightly out of phase with the face glow */
+.cube-hexbg { animation: hexBreath 2.8s ease-in-out 1.4s infinite; }
+
 @keyframes spincube {
-  from, to { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
-  16%  { transform: rotateY(-90deg); }
-  33%  { transform: rotateY(-90deg) rotateZ(90deg); }
-  50%  { transform: rotateY(-180deg) rotateZ(90deg); }
-  66%  { transform: rotateY(-270deg) rotateZ(90deg); }
+  /*
+   * 5 faces × 20% = 100% — seamless loop, no dead-pause at the seam.
+   * Hold: 5% × 12s = 0.6s  |  Snap: 15% × 12s = 1.8s
+   */
+  0%   { transform: rotateY(0deg)    rotateZ(0deg);   animation-timing-function: ease-in-out; }
+  5%   { transform: rotateY(0deg)    rotateZ(0deg);   animation-timing-function: cubic-bezier(0.42, 0, 0.175, 1.3); }
+  20%  { transform: rotateY(-90deg)  rotateZ(0deg);   animation-timing-function: ease-in-out; }
+  25%  { transform: rotateY(-90deg)  rotateZ(0deg);   animation-timing-function: cubic-bezier(0.42, 0, 0.175, 1.3); }
+  40%  { transform: rotateY(-90deg)  rotateZ(90deg);  animation-timing-function: ease-in-out; }
+  45%  { transform: rotateY(-90deg)  rotateZ(90deg);  animation-timing-function: cubic-bezier(0.42, 0, 0.175, 1.3); }
+  60%  { transform: rotateY(-180deg) rotateZ(90deg);  animation-timing-function: ease-in-out; }
+  65%  { transform: rotateY(-180deg) rotateZ(90deg);  animation-timing-function: cubic-bezier(0.42, 0, 0.175, 1.3); }
+  80%  { transform: rotateY(-270deg) rotateZ(90deg);  animation-timing-function: ease-in-out; }
+  85%  { transform: rotateY(-270deg) rotateZ(90deg);  animation-timing-function: cubic-bezier(0.42, 0, 0.175, 1.3); }
+  100% { transform: rotateY(-360deg) rotateZ(0deg); }
+}
+
+@keyframes cubeGlow {
+  0%, 100% {
+    box-shadow: 0 0 40px rgba(240, 160, 48, 0.16), inset 0 0 22px rgba(240, 160, 48, 0.05);
+    border-color: rgba(240, 160, 48, 0.18);
+  }
+  50% {
+    box-shadow: 0 0 72px rgba(220, 38, 38, 0.24), inset 0 0 30px rgba(220, 38, 38, 0.09);
+    border-color: rgba(220, 38, 38, 0.30);
+  }
+}
+
+@keyframes cubeGlowLight {
+  0%, 100% {
+    box-shadow:
+      0 6px 28px rgba(0, 0, 0, 0.13),
+      0 0 40px rgba(192, 120, 32, 0.16),
+      inset 0 0 22px rgba(192, 120, 32, 0.07);
+    border-color: rgba(192, 120, 32, 0.22);
+  }
+  50% {
+    box-shadow:
+      0 6px 28px rgba(0, 0, 0, 0.15),
+      0 0 72px rgba(180, 20, 20, 0.22),
+      inset 0 0 30px rgba(180, 20, 20, 0.09);
+    border-color: rgba(180, 20, 20, 0.28);
+  }
+}
+
+@keyframes hexBreath {
+  0%, 100% { opacity: 0.10; }
+  50%       { opacity: 0.22; }
+}
+
+@keyframes hexBreathLight {
+  0%, 100% { opacity: 0.04; }
+  50%       { opacity: 0.08; }
+}
+
+[data-theme="light"] .cube-hexbg {
+  animation: hexBreathLight 2.8s ease-in-out 1.4s infinite;
 }
 
 @media screen and (max-width: 480px) {
