@@ -102,6 +102,7 @@ const Contact = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
   const [loading, setLoading] = React.useState(false)
   const [sent, setSent] = React.useState(false)
+  const [error, setError] = React.useState(null)
   const refForm = useRef()
 
   useEffect(() => {
@@ -113,6 +114,7 @@ const Contact = () => {
   const sendEmail = (e) => {
     e.preventDefault()
     setLoading(true)
+    setError(null)
     emailjs
       .sendForm(
         'solitude_of_barnacle',
@@ -126,10 +128,9 @@ const Contact = () => {
           setSent(true)
           refForm.current.reset()
         },
-        (err) => {
+        () => {
           setLoading(false)
-          console.log(err)
-          alert('Failed to send the message, please try again.')
+          setError('Something went wrong. Please try again or reach me directly on LinkedIn.')
         }
       )
   }
@@ -165,6 +166,11 @@ const Contact = () => {
                 <li>
                   <textarea placeholder="Message" name="message" required />
                 </li>
+                {error && (
+                  <li className="form-error" role="alert">
+                    {error}
+                  </li>
+                )}
                 <li>
                   <input type="submit" className="flat-button" value="SEND" />
                 </li>
