@@ -1,6 +1,6 @@
 .nav-bar {
   background: var(--bg-surface);
-  box-shadow: 0px 0px 4px 2px var(--purple-border);
+  box-shadow: 0px 0px 4px 2px var(--teal-border);
   width: 70px;
   height: 100%;
   position: relative;
@@ -44,7 +44,7 @@
       }
 
       &:hover {
-        color: var(--purple);
+        color: var(--teal);
 
         svg {
           opacity: 0;
@@ -68,7 +68,7 @@
         text-align: center;
         opacity: 0;
         transition: all 0.3s ease-out;
-        color: var(--purple);
+        color: var(--teal);
       }
 
       &:first-child::after { content: 'HOME'; }
@@ -80,7 +80,7 @@
     a.contact-link::after    { content: 'CONTACT'; }
 
     a.active svg {
-      color: var(--purple);
+      color: var(--teal);
     }
   }
 
@@ -103,7 +103,7 @@
       transition: color 0.2s ease;
 
       &:hover svg {
-        color: var(--purple);
+        color: var(--teal);
       }
     }
   }

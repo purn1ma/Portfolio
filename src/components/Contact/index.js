@@ -105,6 +105,7 @@ const Contact = () => {
   const refForm = useRef()
 
   useEffect(() => {
+    document.title = 'Contact — Purnima Shrivastava'
     const timer = setTimeout(() => setLetterClass('text-animate-hover'), 3000)
     return () => clearTimeout(timer)
   }, [])

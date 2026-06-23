@@ -14,6 +14,7 @@ const Projects = () => {
   )
 
   useEffect(() => {
+    document.title = 'Projects — Purnima Shrivastava'
     const timer = setTimeout(() => {
       setLetterClass('text-animate-hover')
     }, 3000)

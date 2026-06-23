@@ -70,6 +70,7 @@ const Home = () => {
   const jobArray = 'SAP ABAP Developer.'.split('')
 
   useEffect(() => {
+    document.title = 'Purnima Shrivastava — SAP ABAP Developer'
     const timer = setTimeout(() => {
       setLetterClass('text-animate-hover')
     }, 5100)

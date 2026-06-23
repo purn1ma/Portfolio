@@ -7,6 +7,7 @@ import Contact from './components/Contact'
 import Projects from './components/Projects'
 import WorkExperience from './components/WorkExperience'
 import Resume from './components/Resume'
+import NotFound from './components/NotFound'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/resume" element={<Resume />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   )

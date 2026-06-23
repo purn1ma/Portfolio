@@ -43,7 +43,7 @@ export default function BottomBar() {
   }
 
   const NAV_STYLES = {
-    color: 'var(--purple)',
+    color: 'var(--teal)',
     borderLeft: '1px solid var(--border)',
   }
 
@@ -60,7 +60,7 @@ export default function BottomBar() {
       sx={{
         width: width,
         background: 'var(--bg-surface)',
-        boxShadow: '0 -1px 4px var(--purple-border)',
+        boxShadow: '0 -1px 4px var(--teal-border)',
       }}
       value={value}
       onChange={handleChange}

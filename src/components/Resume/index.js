@@ -8,8 +8,10 @@ const RESUME_URL = 'https://drive.google.com/file/d/1sNIIGFmVnrxeciIHkOL9Ggq6_-B
 
 const Resume = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
+  const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
+    document.title = 'Resume — Purnima Shrivastava'
     const timer = setTimeout(() => {
       setLetterClass('text-animate-hover')
     }, 3000)
@@ -37,11 +39,18 @@ const Resume = () => {
           </a>
         </div>
         <div className="resume-preview">
+          {!loaded && (
+            <div className="resume-skeleton" aria-label="Loading resume…">
+              <div className="skeleton-shimmer" />
+            </div>
+          )}
           <iframe
             src={`${RESUME_URL}/preview`}
             title="Purnima Shrivastava Resume"
             frameBorder="0"
             allowFullScreen
+            onLoad={() => setLoaded(true)}
+            style={{ opacity: loaded ? 1 : 0 }}
           />
         </div>
       </div>

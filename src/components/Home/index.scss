@@ -108,9 +108,9 @@
       border-color: var(--text-secondary);
 
       &:hover {
-        background: var(--purple-subtle);
-        color: var(--purple);
-        border-color: var(--purple);
+        background: var(--teal-subtle);
+        color: var(--teal);
+        border-color: var(--teal);
       }
     }
   }
@@ -244,6 +244,16 @@
   .home-page {
     flex-wrap: wrap;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 76vh;
+    padding: 0 5vw;
+    box-sizing: border-box;
+
+    .text-zone {
+      flex: none;
+      width: 100%;
+    }
   }
 
   /* Reflow tiles into a badge grid instead of hiding them */

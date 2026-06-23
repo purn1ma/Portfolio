@@ -21,10 +21,19 @@ const EXPERIENCE = [
   },
 ]
 
+const UPSKILLING = [
+  'S/4HANA Clean-Core Architecture',
+  'CDS Views & Annotations',
+  'RESTful ABAP Programming (RAP)',
+  'OData Services (V2 & V4)',
+  'SAP Fiori / UI5',
+]
+
 const WorkExperience = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
 
   useEffect(() => {
+    document.title = 'Experience — Purnima Shrivastava'
     const timer = setTimeout(() => {
       setLetterClass('text-animate-hover')
     }, 3000)
@@ -62,6 +71,18 @@ const WorkExperience = () => {
               </ul>
             </div>
           ))}
+
+          <div className="upskilling-card">
+            <div className="up-header">
+              <span className="up-label">Currently Upskilling</span>
+              <span className="up-sub">S/4HANA · Clean-Core · Modern SAP Stack</span>
+            </div>
+            <div className="up-tags">
+              {UPSKILLING.map((item, i) => (
+                <span key={i} className="up-tag">{item}</span>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
   )

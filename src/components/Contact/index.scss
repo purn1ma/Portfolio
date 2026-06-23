@@ -300,7 +300,7 @@
 
     .item-icon {
       font-size: 20px;
-      color: var(--purple);
+      color: var(--teal);
       width: 24px;
       text-align: center;
       transition: color 0.2s ease;
@@ -335,20 +335,20 @@
     gap: 10px;
     padding: 10px 16px;
     border-radius: 20px;
-    border: 1px solid var(--purple-border);
-    background: var(--purple-subtle);
+    border: 1px solid var(--teal-border);
+    background: var(--teal-subtle);
     font-family: 'Inter', sans-serif;
     font-size: 12px;
     font-weight: 500;
-    color: var(--purple);
+    color: var(--teal);
     width: fit-content;
 
     .availability-dot {
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: var(--purple);
-      box-shadow: 0 0 0 0 var(--purple);
+      background: var(--teal);
+      box-shadow: 0 0 0 0 var(--teal);
       animation: pulse-dot 2s infinite;
     }
   }
@@ -448,13 +448,13 @@
   textarea {
     font-family: 'Inter', sans-serif;
     border-radius: 6px;
-    background: var(--purple-subtle);
+    background: var(--teal-subtle);
     border: 1px solid var(--border);
     transition: border-color 0.2s ease;
 
     &:focus {
       outline: none;
-      border-color: var(--purple);
+      border-color: var(--teal);
     }
   }
 

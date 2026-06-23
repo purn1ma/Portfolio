@@ -1,0 +1,88 @@
+.not-found-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  position: relative;
+  gap: 32px;
+  background: var(--bg);
+}
+
+.nf-web {
+  position: absolute;
+  width: clamp(200px, 40vmin, 320px);
+  height: clamp(200px, 40vmin, 320px);
+  opacity: 0.6;
+  animation: nfSpin 60s linear infinite;
+}
+
+@keyframes nfSpin {
+  to { transform: rotate(360deg); }
+}
+
+.nf-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.nf-code {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(80px, 18vw, 130px);
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  opacity: 0.18;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.nf-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(28px, 6vw, 44px);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.nf-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-secondary);
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.nf-button {
+  margin-top: 8px;
+  color: var(--accent);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 1px solid var(--accent);
+  text-transform: uppercase;
+  transition: background 0.2s ease, color 0.2s ease;
+  position: relative;
+  z-index: 1;
+
+  &:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
+}

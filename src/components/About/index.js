@@ -10,6 +10,7 @@ const About = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
 
   useEffect(() => {
+    document.title = 'About — Purnima Shrivastava'
     const timer = setTimeout(() => {
       setLetterClass('text-animate-hover')
     }, 3000)

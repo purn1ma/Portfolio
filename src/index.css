@@ -8,9 +8,9 @@
   --text-muted:      #504c47;
   --accent:          #f0a030;
   --accent-hover:    #fabb44;
-  --purple:          #7a9e8a;
-  --purple-subtle:   rgba(122, 158, 138, 0.10);
-  --purple-border:   rgba(122, 158, 138, 0.22);
+  --teal:            #7a9e8a;
+  --teal-subtle:     rgba(122, 158, 138, 0.10);
+  --teal-border:     rgba(122, 158, 138, 0.22);
   --nav-icon:        #504c47;
   --border:          rgba(237, 232, 222, 0.10);
   --glow:            rgba(240, 160, 48, 0.10);
@@ -26,9 +26,9 @@
   --text-muted:      #a09890;
   --accent:          #d4780c;
   --accent-hover:    #f0a030;
-  --purple:          #4d7a68;
-  --purple-subtle:   rgba(77, 122, 104, 0.09);
-  --purple-border:   rgba(77, 122, 104, 0.22);
+  --teal:            #4d7a68;
+  --teal-subtle:     rgba(77, 122, 104, 0.09);
+  --teal-border:     rgba(77, 122, 104, 0.22);
   --nav-icon:        #a09890;
   --border:          rgba(28, 25, 22, 0.12);
   --glow:            rgba(212, 120, 12, 0.12);
@@ -49,8 +49,23 @@
 ::view-transition-old(root) { z-index: -1; }
 
 * {
-  user-select: none;
   box-sizing: border-box;
+}
+
+/* Disable selection only on decorative / navigational chrome */
+.tags, .nav-bar, .web-corner-decor, .ps-mark,
+.htw-svg, .cube-hexbg, .theme-toggle,
+.spidey-hex-bg, .corner-web, button {
+  user-select: none;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 html {
