@@ -60,6 +60,55 @@ const CornerWeb = ({ className }) => (
   </svg>
 )
 
+const ErrorScreen = ({ onClose, onRetry }) => {
+  useEffect(() => {
+    const t = setTimeout(onClose, 10000)
+    return () => clearTimeout(t)
+  }, [onClose])
+
+  return (
+    <div className="spidey-overlay spidey-overlay--error" onClick={onClose}>
+      <div className="spidey-hex-bg" aria-hidden="true" />
+      <CornerWeb className="corner-web--tr" />
+      <CornerWeb className="corner-web--bl" />
+
+      {/* Thread snaps — spider tumbles down */}
+      <div className="spider-drop spider-drop--fall">
+        <div className="web-thread web-thread--snap" />
+        <SpiderSVG />
+      </div>
+
+      <div className="thwip-wrapper">
+        <span className="thwip-bubble thwack-bubble">THWACK!</span>
+      </div>
+
+      <div className="spidey-content">
+        <p className="spidey-tagline">your friendly neighbourhood developer</p>
+        <h2 className="spidey-heading">Web Jammed!</h2>
+        <p className="spidey-sub">My web snapped. Try again or reach me directly.</p>
+        <div className="spidey-error-actions">
+          <button
+            className="spidey-action-btn"
+            onClick={(e) => { e.stopPropagation(); onRetry() }}
+          >
+            Try Again
+          </button>
+          <a
+            href="https://www.linkedin.com/in/purnima-shrivastava/"
+            target="_blank"
+            rel="noreferrer"
+            className="spidey-action-btn spidey-action-btn--outline"
+            onClick={(e) => e.stopPropagation()}
+          >
+            LinkedIn →
+          </a>
+        </div>
+        <p className="spidey-dismiss">tap anywhere to close</p>
+      </div>
+    </div>
+  )
+}
+
 const SuccessScreen = ({ onClose }) => {
   useEffect(() => {
     const t = setTimeout(onClose, 8000)
@@ -102,7 +151,7 @@ const Contact = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
   const [loading, setLoading] = React.useState(false)
   const [sent, setSent] = React.useState(false)
-  const [error, setError] = React.useState(null)
+  const [error, setError] = React.useState(false)
   const refForm = useRef()
 
   useEffect(() => {
@@ -114,7 +163,7 @@ const Contact = () => {
   const sendEmail = (e) => {
     e.preventDefault()
     setLoading(true)
-    setError(null)
+    setError(false)
     emailjs
       .sendForm(
         'solitude_of_barnacle',
@@ -130,7 +179,7 @@ const Contact = () => {
         },
         () => {
           setLoading(false)
-          setError('Something went wrong. Please try again or reach me directly on LinkedIn.')
+          setError(true)
         }
       )
   }
@@ -166,11 +215,6 @@ const Contact = () => {
                 <li>
                   <textarea placeholder="Message" name="message" required />
                 </li>
-                {error && (
-                  <li className="form-error" role="alert">
-                    {error}
-                  </li>
-                )}
                 <li>
                   <input type="submit" className="flat-button" value="SEND" />
                 </li>
@@ -235,7 +279,8 @@ const Contact = () => {
         </div>
       </Backdrop>
 
-      {sent && <SuccessScreen onClose={() => setSent(false)} />}
+      {sent  && <SuccessScreen onClose={() => setSent(false)} />}
+      {error && <ErrorScreen  onClose={() => setError(false)} onRetry={() => setError(false)} />}
     </>
   )
 }
